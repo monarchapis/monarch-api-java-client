@@ -1,32 +1,25 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class ProviderContext {
+public class MessageDetailsList implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
-	private String id;
+	private List<MessageDetails> items;
 
-	@NotNull
-	private String label;
-
-	public String getId() {
-		return id;
+	public List<MessageDetails> getItems() {
+		return items;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
+	public void setItems(List<MessageDetails> items) {
+		this.items = items;
 	}
 
 	@Override

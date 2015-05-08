@@ -1,5 +1,6 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -7,7 +8,8 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class PermissionDetails {
+public class PermissionDetails implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private String name;

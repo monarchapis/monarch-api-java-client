@@ -1,11 +1,14 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class ValueCount {
+public class ValueCount implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	/** The value of the metric */
 	@NotNull

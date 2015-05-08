@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class AuthorizationDetails implements Serializable {
-	private static final long serialVersionUID = -1470625392740166149L;
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private ClientDetails client;

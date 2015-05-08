@@ -1,5 +1,6 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +12,8 @@ import org.joda.time.DateTime;
 
 import com.google.common.base.Optional;
 
-public class Provider {
+public class Provider implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private String id;

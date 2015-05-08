@@ -11,7 +11,7 @@ import com.monarchapis.api.v1.model.AuthenticationResponse;
 import com.monarchapis.api.v1.model.AuthorizationDetails;
 import com.monarchapis.api.v1.model.AuthorizationRequest;
 import com.monarchapis.api.v1.model.ClientAuthenticationRequest;
-import com.monarchapis.api.v1.model.MessageList;
+import com.monarchapis.api.v1.model.MessageDetailsList;
 import com.monarchapis.api.v1.model.PermissionMessagesRequest;
 import com.monarchapis.api.v1.model.TokenDetails;
 import com.monarchapis.api.v1.model.TokenRequest;
@@ -108,10 +108,11 @@ public class SecurityResourceImpl extends AbstractResource implements SecurityRe
 				.setQuery("callbackUri", callbackUri);
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		checkStatusCode(response);
 	}
 
-	public MessageList getPermissionMessages(PermissionMessagesRequest body) {
+	public MessageDetailsList getPermissionMessages(PermissionMessagesRequest body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/permissions/messages") //
@@ -121,7 +122,7 @@ public class SecurityResourceImpl extends AbstractResource implements SecurityRe
 
 		signRequest(client);
 		final RestResponse response = client.send();
-		return parseAs(response, MessageList.class);
+		return parseAs(response, MessageDetailsList.class);
 	}
 
 	@Override

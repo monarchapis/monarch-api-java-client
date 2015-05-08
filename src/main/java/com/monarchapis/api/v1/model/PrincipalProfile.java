@@ -1,12 +1,15 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.joda.time.DateTime;
 
-public class PrincipalProfile {
+public class PrincipalProfile implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private String id;

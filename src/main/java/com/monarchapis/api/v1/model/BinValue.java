@@ -1,5 +1,6 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.validation.constraints.NotNull;
@@ -7,7 +8,8 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class BinValue {
+public class BinValue implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	/** The count for the sample */
 	@NotNull

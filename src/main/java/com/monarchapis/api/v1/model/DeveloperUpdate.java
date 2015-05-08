@@ -1,5 +1,6 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -9,7 +10,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.google.common.base.Optional;
 
-public class DeveloperUpdate {
+public class DeveloperUpdate implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private String username;

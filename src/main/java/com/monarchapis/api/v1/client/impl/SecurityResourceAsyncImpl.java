@@ -12,7 +12,7 @@ import com.monarchapis.api.v1.model.AuthenticationResponse;
 import com.monarchapis.api.v1.model.AuthorizationDetails;
 import com.monarchapis.api.v1.model.AuthorizationRequest;
 import com.monarchapis.api.v1.model.ClientAuthenticationRequest;
-import com.monarchapis.api.v1.model.MessageList;
+import com.monarchapis.api.v1.model.MessageDetailsList;
 import com.monarchapis.api.v1.model.PermissionMessagesRequest;
 import com.monarchapis.api.v1.model.TokenDetails;
 import com.monarchapis.api.v1.model.TokenRequest;
@@ -95,7 +95,7 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 		return future;
 	}
 
-	public Future<TokenDetails> loadClient(String apiKey, String token, String refresh, String callbackUri,
+	public Future<TokenDetails> loadToken(String apiKey, String token, String refresh, String callbackUri,
 			Callback<TokenDetails> callback) {
 		require(apiKey, "apiKey is a required parameter.");
 
@@ -113,7 +113,7 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 		return future;
 	}
 
-	public void deleteClient(String apiKey, String token, String callbackUri, VoidCallback callback) {
+	public void revokeToken(String apiKey, String token, String callbackUri, VoidCallback callback) {
 		require(apiKey, "apiKey is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/tokens") //
@@ -126,7 +126,8 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 		client.send(callback);
 	}
 
-	public Future<MessageList> getPermissionMessages(PermissionMessagesRequest body, Callback<MessageList> callback) {
+	public Future<MessageDetailsList> getPermissionMessages(PermissionMessagesRequest body,
+			Callback<MessageDetailsList> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/permissions/messages") //
@@ -135,8 +136,8 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 				.setBody(toJson(body));
 
 		signRequest(client);
-		AsyncFuture<MessageList> future = client.future(callback);
-		client.send(callbackAdapter(future, MessageList.class));
+		AsyncFuture<MessageDetailsList> future = client.future(callback);
+		client.send(callbackAdapter(future, MessageDetailsList.class));
 
 		return future;
 	}

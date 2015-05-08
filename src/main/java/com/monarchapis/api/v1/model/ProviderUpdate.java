@@ -1,5 +1,6 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +11,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.google.common.base.Optional;
 
-public class ProviderUpdate {
+public class ProviderUpdate implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private String label;

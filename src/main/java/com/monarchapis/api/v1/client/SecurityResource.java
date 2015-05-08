@@ -5,7 +5,7 @@ import com.monarchapis.api.v1.model.AuthenticationResponse;
 import com.monarchapis.api.v1.model.AuthorizationDetails;
 import com.monarchapis.api.v1.model.AuthorizationRequest;
 import com.monarchapis.api.v1.model.ClientAuthenticationRequest;
-import com.monarchapis.api.v1.model.MessageList;
+import com.monarchapis.api.v1.model.MessageDetailsList;
 import com.monarchapis.api.v1.model.PermissionMessagesRequest;
 import com.monarchapis.api.v1.model.TokenDetails;
 import com.monarchapis.api.v1.model.TokenRequest;
@@ -24,5 +24,5 @@ public interface SecurityResource {
 
 	public void revokeToken(String apiKey, String token, String callbackUri);
 
-	public MessageList getPermissionMessages(PermissionMessagesRequest body);
+	public MessageDetailsList getPermissionMessages(PermissionMessagesRequest body);
 }

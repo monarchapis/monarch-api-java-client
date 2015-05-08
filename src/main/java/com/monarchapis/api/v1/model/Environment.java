@@ -1,5 +1,7 @@
 package com.monarchapis.api.v1.model;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -8,7 +10,8 @@ import org.joda.time.DateTime;
 
 import com.google.common.base.Optional;
 
-public class Environment {
+public class Environment implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private String id;

@@ -7,7 +7,7 @@ import com.monarchapis.api.v1.model.AuthenticationResponse;
 import com.monarchapis.api.v1.model.AuthorizationDetails;
 import com.monarchapis.api.v1.model.AuthorizationRequest;
 import com.monarchapis.api.v1.model.ClientAuthenticationRequest;
-import com.monarchapis.api.v1.model.MessageList;
+import com.monarchapis.api.v1.model.MessageDetailsList;
 import com.monarchapis.api.v1.model.PermissionMessagesRequest;
 import com.monarchapis.api.v1.model.TokenDetails;
 import com.monarchapis.api.v1.model.TokenRequest;
@@ -26,10 +26,11 @@ public interface SecurityResourceAsync {
 
 	public Future<TokenDetails> createToken(TokenRequest body, Callback<TokenDetails> callback);
 
-	public Future<TokenDetails> loadClient(String apiKey, String token, String refresh, String callbackUri,
+	public Future<TokenDetails> loadToken(String apiKey, String token, String refresh, String callbackUri,
 			Callback<TokenDetails> callback);
 
-	public void deleteClient(String apiKey, String token, String callbackUri, VoidCallback callback);
+	public void revokeToken(String apiKey, String token, String callbackUri, VoidCallback callback);
 
-	public Future<MessageList> getPermissionMessages(PermissionMessagesRequest body, Callback<MessageList> callback);
+	public Future<MessageDetailsList> getPermissionMessages(PermissionMessagesRequest body,
+			Callback<MessageDetailsList> callback);
 }
