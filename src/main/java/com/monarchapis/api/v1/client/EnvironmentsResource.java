@@ -9,7 +9,7 @@ public interface EnvironmentsResource {
 
 	public EnvironmentList queryEnvironments(EnvironmentsQuery query);
 
-	public void createEnvironment(EnvironmentUpdate body);
+	public Environment createEnvironment(EnvironmentUpdate body);
 
 	public Environment loadEnvironment(String id);
 

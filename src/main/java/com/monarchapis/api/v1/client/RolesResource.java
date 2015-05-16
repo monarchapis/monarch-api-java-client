@@ -8,7 +8,7 @@ public interface RolesResource {
 
 	public RoleList queryRoles(RolesQuery query);
 
-	public void createRole(RoleUpdate body);
+	public Role createRole(RoleUpdate body);
 
 	public Role loadRole(String id);
 

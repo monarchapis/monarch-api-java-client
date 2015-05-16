@@ -6,13 +6,12 @@ import com.monarchapis.api.v1.model.Service;
 import com.monarchapis.api.v1.model.ServiceList;
 import com.monarchapis.api.v1.model.ServiceUpdate;
 import com.monarchapis.client.rest.Callback;
-import com.monarchapis.client.rest.VoidCallback;
 
 public interface ServicesResourceAsync {
 
 	public Future<ServiceList> queryServices(ServicesQuery query, Callback<ServiceList> callback);
 
-	public void createService(ServiceUpdate body, VoidCallback callback);
+	public Future<Service> createService(ServiceUpdate body, Callback<Service> callback);
 
 	public Future<Service> loadService(String id, Callback<Service> callback);
 

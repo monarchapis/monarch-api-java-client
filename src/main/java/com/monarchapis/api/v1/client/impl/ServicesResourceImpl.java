@@ -47,7 +47,7 @@ public class ServicesResourceImpl extends AbstractResource implements ServicesRe
 		return parseAs(response, ServiceList.class);
 	}
 
-	public void createService(ServiceUpdate body) {
+	public Service createService(ServiceUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/services") //
@@ -56,7 +56,8 @@ public class ServicesResourceImpl extends AbstractResource implements ServicesRe
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Service.class);
 	}
 
 	public Service loadService(String id) {

@@ -8,7 +8,7 @@ public interface PrincipalProfilesResource {
 
 	public PrincipalProfileList queryPrincipalProfile(PrincipalProfilesQuery query);
 
-	public void createPlan(PrincipalProfileUpdate body);
+	public PrincipalProfile createPlan(PrincipalProfileUpdate body);
 
 	public PrincipalProfile loadPrincipalProfile(String id);
 

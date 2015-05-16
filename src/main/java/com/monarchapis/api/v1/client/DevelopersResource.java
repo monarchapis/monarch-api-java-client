@@ -8,7 +8,7 @@ public interface DevelopersResource {
 
 	public DeveloperList queryDevelopers(DevelopersQuery query);
 
-	public void createDeveloper(DeveloperUpdate body);
+	public Developer createDeveloper(DeveloperUpdate body);
 
 	public Developer loadDeveloper(String id);
 

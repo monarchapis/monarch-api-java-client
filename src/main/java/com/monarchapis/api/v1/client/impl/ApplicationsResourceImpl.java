@@ -50,7 +50,7 @@ public class ApplicationsResourceImpl extends AbstractResource implements Applic
 		return parseAs(response, ApplicationList.class);
 	}
 
-	public void createApplication(ApplicationUpdate body) {
+	public Application createApplication(ApplicationUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/applications") //
@@ -59,7 +59,8 @@ public class ApplicationsResourceImpl extends AbstractResource implements Applic
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Application.class);
 	}
 
 	public Application loadApplication(String id) {

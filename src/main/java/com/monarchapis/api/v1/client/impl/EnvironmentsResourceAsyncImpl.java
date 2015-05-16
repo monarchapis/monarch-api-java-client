@@ -20,7 +20,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class EnvironmentsResourceAsyncImpl extends AbstractResource implements EnvironmentsResourceAsync {
 	public EnvironmentsResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -51,7 +50,7 @@ public class EnvironmentsResourceAsyncImpl extends AbstractResource implements E
 		return future;
 	}
 
-	public void createEnvironment(EnvironmentUpdate body, VoidCallback callback) {
+	public Future<Environment> createEnvironment(EnvironmentUpdate body, Callback<Environment> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/environments") //
@@ -60,7 +59,10 @@ public class EnvironmentsResourceAsyncImpl extends AbstractResource implements E
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Environment> future = client.future(callback);
+		client.send(callbackAdapter(future, Environment.class));
+
+		return future;
 	}
 
 	public Future<Environment> loadEnvironment(String id, Callback<Environment> callback) {

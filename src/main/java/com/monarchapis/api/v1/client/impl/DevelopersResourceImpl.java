@@ -57,7 +57,7 @@ public class DevelopersResourceImpl extends AbstractResource implements Develope
 		return parseAs(response, DeveloperList.class);
 	}
 
-	public void createDeveloper(DeveloperUpdate body) {
+	public Developer createDeveloper(DeveloperUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/developers") //
@@ -66,7 +66,8 @@ public class DevelopersResourceImpl extends AbstractResource implements Develope
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Developer.class);
 	}
 
 	public Developer loadDeveloper(String id) {

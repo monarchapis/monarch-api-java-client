@@ -52,7 +52,7 @@ public class TokensResourceImpl extends AbstractResource implements TokensResour
 		return parseAs(response, TokenList.class);
 	}
 
-	public void createToken(Token body) {
+	public Token createToken(Token body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/tokens") //
@@ -61,7 +61,8 @@ public class TokensResourceImpl extends AbstractResource implements TokensResour
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Token.class);
 	}
 
 	public Token loadToken(String id) {

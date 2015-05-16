@@ -41,7 +41,7 @@ public class PlansResourceImpl extends AbstractResource implements PlansResource
 		return parseAs(response, PlanList.class);
 	}
 
-	public void createPlan(PlanUpdate body) {
+	public Plan createPlan(PlanUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/plans") //
@@ -50,7 +50,8 @@ public class PlansResourceImpl extends AbstractResource implements PlansResource
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Plan.class);
 	}
 
 	public Plan loadPlan(String id) {

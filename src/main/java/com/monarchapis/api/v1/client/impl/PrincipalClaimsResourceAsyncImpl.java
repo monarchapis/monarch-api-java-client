@@ -19,7 +19,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implements PrincipalClaimsResourceAsync {
 	public PrincipalClaimsResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -49,7 +48,7 @@ public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implement
 		return future;
 	}
 
-	public void createPlan(PrincipalClaimsUpdate body, VoidCallback callback) {
+	public Future<PrincipalClaims> createPlan(PrincipalClaimsUpdate body, Callback<PrincipalClaims> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/principalClaims") //
@@ -58,7 +57,10 @@ public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implement
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<PrincipalClaims> future = client.future(callback);
+		client.send(callbackAdapter(future, PrincipalClaims.class));
+
+		return future;
 	}
 
 	public Future<PrincipalClaims> loadPrincipalClaims(String id, Callback<PrincipalClaims> callback) {

@@ -8,7 +8,7 @@ public interface ClientsResource {
 
 	public ClientList queryClients(ClientsQuery query);
 
-	public void createClient(ClientUpdate body);
+	public Client createClient(ClientUpdate body);
 
 	public Client loadClient(String id);
 

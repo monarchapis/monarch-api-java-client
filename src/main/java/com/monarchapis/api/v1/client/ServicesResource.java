@@ -8,7 +8,7 @@ public interface ServicesResource {
 
 	public ServiceList queryServices(ServicesQuery query);
 
-	public void createService(ServiceUpdate body);
+	public Service createService(ServiceUpdate body);
 
 	public Service loadService(String id);
 

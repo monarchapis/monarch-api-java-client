@@ -41,7 +41,7 @@ public class RolesResourceImpl extends AbstractResource implements RolesResource
 		return parseAs(response, RoleList.class);
 	}
 
-	public void createRole(RoleUpdate body) {
+	public Role createRole(RoleUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/roles") //
@@ -50,7 +50,8 @@ public class RolesResourceImpl extends AbstractResource implements RolesResource
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Role.class);
 	}
 
 	public Role loadRole(String id) {

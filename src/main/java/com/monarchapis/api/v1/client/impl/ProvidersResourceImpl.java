@@ -42,7 +42,7 @@ public class ProvidersResourceImpl extends AbstractResource implements Providers
 		return parseAs(response, ProviderList.class);
 	}
 
-	public void createProvider(ProviderUpdate body) {
+	public Provider createProvider(ProviderUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/providers") //
@@ -51,7 +51,8 @@ public class ProvidersResourceImpl extends AbstractResource implements Providers
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Provider.class);
 	}
 
 	public Provider loadProvider(String id) {

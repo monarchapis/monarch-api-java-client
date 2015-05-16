@@ -6,13 +6,12 @@ import com.monarchapis.api.v1.model.Message;
 import com.monarchapis.api.v1.model.MessageList;
 import com.monarchapis.api.v1.model.MessageUpdate;
 import com.monarchapis.client.rest.Callback;
-import com.monarchapis.client.rest.VoidCallback;
 
 public interface MessagesResourceAsync {
 
 	public Future<MessageList> queryMessages(MessagesQuery query, Callback<MessageList> callback);
 
-	public void createMessage(MessageUpdate body, VoidCallback callback);
+	public Future<Message> createMessage(MessageUpdate body, Callback<Message> callback);
 
 	public Future<Message> loadMessage(String id, Callback<Message> callback);
 

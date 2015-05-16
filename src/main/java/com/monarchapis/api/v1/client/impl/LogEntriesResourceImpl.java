@@ -42,7 +42,7 @@ public class LogEntriesResourceImpl extends AbstractResource implements LogEntri
 		return parseAs(response, LogEntryList.class);
 	}
 
-	public void createLogEntry(LogEntryUpdate body) {
+	public LogEntry createLogEntry(LogEntryUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/logEntries") //
@@ -51,7 +51,8 @@ public class LogEntriesResourceImpl extends AbstractResource implements LogEntri
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, LogEntry.class);
 	}
 
 	public LogEntry loadLogEntry(String id) {

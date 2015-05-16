@@ -8,7 +8,7 @@ public interface MessagesResource {
 
 	public MessageList queryMessages(MessagesQuery query);
 
-	public void createMessage(MessageUpdate body);
+	public Message createMessage(MessageUpdate body);
 
 	public Message loadMessage(String id);
 

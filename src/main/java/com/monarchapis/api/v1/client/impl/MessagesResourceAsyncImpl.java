@@ -19,7 +19,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class MessagesResourceAsyncImpl extends AbstractResource implements MessagesResourceAsync {
 	public MessagesResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -48,7 +47,7 @@ public class MessagesResourceAsyncImpl extends AbstractResource implements Messa
 		return future;
 	}
 
-	public void createMessage(MessageUpdate body, VoidCallback callback) {
+	public Future<Message> createMessage(MessageUpdate body, Callback<Message> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/messages") //
@@ -57,7 +56,10 @@ public class MessagesResourceAsyncImpl extends AbstractResource implements Messa
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Message> future = client.future(callback);
+		client.send(callbackAdapter(future, Message.class));
+
+		return future;
 	}
 
 	public Future<Message> loadMessage(String id, Callback<Message> callback) {

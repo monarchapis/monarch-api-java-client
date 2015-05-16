@@ -10,7 +10,7 @@ public interface UsersResource {
 
 	public UserList queryUsers(UsersQuery query);
 
-	public void createUser(UserUpdate body);
+	public User createUser(UserUpdate body);
 
 	public User loadUser(String id);
 

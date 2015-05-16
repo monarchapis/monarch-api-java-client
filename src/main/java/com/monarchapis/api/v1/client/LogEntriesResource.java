@@ -8,7 +8,7 @@ public interface LogEntriesResource {
 
 	public LogEntryList queryLogEntries(LogEntriesQuery query);
 
-	public void createLogEntry(LogEntryUpdate body);
+	public LogEntry createLogEntry(LogEntryUpdate body);
 
 	public LogEntry loadLogEntry(String id);
 

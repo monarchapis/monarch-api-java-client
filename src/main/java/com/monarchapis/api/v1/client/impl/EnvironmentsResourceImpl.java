@@ -45,7 +45,7 @@ public class EnvironmentsResourceImpl extends AbstractResource implements Enviro
 		return parseAs(response, EnvironmentList.class);
 	}
 
-	public void createEnvironment(EnvironmentUpdate body) {
+	public Environment createEnvironment(EnvironmentUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/environments") //
@@ -54,7 +54,8 @@ public class EnvironmentsResourceImpl extends AbstractResource implements Enviro
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Environment.class);
 	}
 
 	public Environment loadEnvironment(String id) {

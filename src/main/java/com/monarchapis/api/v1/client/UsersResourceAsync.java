@@ -8,13 +8,12 @@ import com.monarchapis.api.v1.model.User;
 import com.monarchapis.api.v1.model.UserList;
 import com.monarchapis.api.v1.model.UserUpdate;
 import com.monarchapis.client.rest.Callback;
-import com.monarchapis.client.rest.VoidCallback;
 
 public interface UsersResourceAsync {
 
 	public Future<UserList> queryUsers(UsersQuery query, Callback<UserList> callback);
 
-	public void createUser(UserUpdate body, VoidCallback callback);
+	public Future<User> createUser(UserUpdate body, Callback<User> callback);
 
 	public Future<User> loadUser(String id, Callback<User> callback);
 

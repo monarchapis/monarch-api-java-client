@@ -8,7 +8,7 @@ public interface PlansResource {
 
 	public PlanList queryPlans(PlansQuery query);
 
-	public void createPlan(PlanUpdate body);
+	public Plan createPlan(PlanUpdate body);
 
 	public Plan loadPlan(String id);
 

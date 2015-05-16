@@ -19,7 +19,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class RolesResourceAsyncImpl extends AbstractResource implements RolesResourceAsync {
 	public RolesResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -49,7 +48,7 @@ public class RolesResourceAsyncImpl extends AbstractResource implements RolesRes
 		return future;
 	}
 
-	public void createRole(RoleUpdate body, VoidCallback callback) {
+	public Future<Role> createRole(RoleUpdate body, Callback<Role> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/roles") //
@@ -58,7 +57,10 @@ public class RolesResourceAsyncImpl extends AbstractResource implements RolesRes
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Role> future = client.future(callback);
+		client.send(callbackAdapter(future, Role.class));
+
+		return future;
 	}
 
 	public Future<Role> loadRole(String id, Callback<Role> callback) {

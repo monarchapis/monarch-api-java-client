@@ -19,7 +19,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class LogEntriesResourceAsyncImpl extends AbstractResource implements LogEntriesResourceAsync {
 	public LogEntriesResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -48,7 +47,7 @@ public class LogEntriesResourceAsyncImpl extends AbstractResource implements Log
 		return future;
 	}
 
-	public void createLogEntry(LogEntryUpdate body, VoidCallback callback) {
+	public Future<LogEntry> createLogEntry(LogEntryUpdate body, Callback<LogEntry> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/logEntries") //
@@ -57,7 +56,10 @@ public class LogEntriesResourceAsyncImpl extends AbstractResource implements Log
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<LogEntry> future = client.future(callback);
+		client.send(callbackAdapter(future, LogEntry.class));
+
+		return future;
 	}
 
 	public Future<LogEntry> loadLogEntry(String id, Callback<LogEntry> callback) {

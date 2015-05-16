@@ -45,7 +45,7 @@ public class UsersResourceImpl extends AbstractResource implements UsersResource
 		return parseAs(response, UserList.class);
 	}
 
-	public void createUser(UserUpdate body) {
+	public User createUser(UserUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/users") //
@@ -54,7 +54,8 @@ public class UsersResourceImpl extends AbstractResource implements UsersResource
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, User.class);
 	}
 
 	public User loadUser(String id) {

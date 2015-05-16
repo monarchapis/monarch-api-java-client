@@ -7,13 +7,12 @@ import com.monarchapis.api.v1.model.EnvironmentList;
 import com.monarchapis.api.v1.model.EnvironmentSummary;
 import com.monarchapis.api.v1.model.EnvironmentUpdate;
 import com.monarchapis.client.rest.Callback;
-import com.monarchapis.client.rest.VoidCallback;
 
 public interface EnvironmentsResourceAsync {
 
 	public Future<EnvironmentList> queryEnvironments(EnvironmentsQuery query, Callback<EnvironmentList> callback);
 
-	public void createEnvironment(EnvironmentUpdate body, VoidCallback callback);
+	public Future<Environment> createEnvironment(EnvironmentUpdate body, Callback<Environment> callback);
 
 	public Future<Environment> loadEnvironment(String id, Callback<Environment> callback);
 

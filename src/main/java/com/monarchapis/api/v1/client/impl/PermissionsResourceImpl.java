@@ -46,7 +46,7 @@ public class PermissionsResourceImpl extends AbstractResource implements Permiss
 		return parseAs(response, PermissionList.class);
 	}
 
-	public void createPermission(PermissionUpdate body) {
+	public Permission createPermission(PermissionUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/permissions") //
@@ -55,7 +55,8 @@ public class PermissionsResourceImpl extends AbstractResource implements Permiss
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Permission.class);
 	}
 
 	public Permission loadPermission(String id) {

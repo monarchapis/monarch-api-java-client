@@ -7,7 +7,7 @@ public interface TokensResource {
 
 	public TokenList queryTokens(TokensQuery query);
 
-	public void createToken(Token body);
+	public Token createToken(Token body);
 
 	public Token loadToken(String id);
 

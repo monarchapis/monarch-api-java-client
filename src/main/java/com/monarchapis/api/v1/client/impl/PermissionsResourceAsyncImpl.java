@@ -19,7 +19,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class PermissionsResourceAsyncImpl extends AbstractResource implements PermissionsResourceAsync {
 	public PermissionsResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -52,7 +51,7 @@ public class PermissionsResourceAsyncImpl extends AbstractResource implements Pe
 		return future;
 	}
 
-	public void createPermission(PermissionUpdate body, VoidCallback callback) {
+	public Future<Permission> createPermission(PermissionUpdate body, Callback<Permission> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/permissions") //
@@ -61,7 +60,10 @@ public class PermissionsResourceAsyncImpl extends AbstractResource implements Pe
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Permission> future = client.future(callback);
+		client.send(callbackAdapter(future, Permission.class));
+
+		return future;
 	}
 
 	public Future<Permission> loadPermission(String id, Callback<Permission> callback) {

@@ -42,7 +42,7 @@ public class PrincipalClaimsResourceImpl extends AbstractResource implements Pri
 		return parseAs(response, PrincipalClaimsList.class);
 	}
 
-	public void createPlan(PrincipalClaimsUpdate body) {
+	public PrincipalClaims createPlan(PrincipalClaimsUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/principalClaims") //
@@ -51,7 +51,8 @@ public class PrincipalClaimsResourceImpl extends AbstractResource implements Pri
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, PrincipalClaims.class);
 	}
 
 	public PrincipalClaims loadPrincipalClaims(String id) {

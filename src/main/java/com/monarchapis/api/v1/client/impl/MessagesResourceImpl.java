@@ -41,7 +41,7 @@ public class MessagesResourceImpl extends AbstractResource implements MessagesRe
 		return parseAs(response, MessageList.class);
 	}
 
-	public void createMessage(MessageUpdate body) {
+	public Message createMessage(MessageUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/messages") //
@@ -50,7 +50,8 @@ public class MessagesResourceImpl extends AbstractResource implements MessagesRe
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Message.class);
 	}
 
 	public Message loadMessage(String id) {

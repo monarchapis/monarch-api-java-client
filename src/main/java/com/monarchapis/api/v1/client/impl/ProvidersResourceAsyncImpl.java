@@ -19,7 +19,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class ProvidersResourceAsyncImpl extends AbstractResource implements ProvidersResourceAsync {
 	public ProvidersResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -49,7 +48,7 @@ public class ProvidersResourceAsyncImpl extends AbstractResource implements Prov
 		return future;
 	}
 
-	public void createProvider(ProviderUpdate body, VoidCallback callback) {
+	public Future<Provider> createProvider(ProviderUpdate body, Callback<Provider> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/providers") //
@@ -58,7 +57,10 @@ public class ProvidersResourceAsyncImpl extends AbstractResource implements Prov
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Provider> future = client.future(callback);
+		client.send(callbackAdapter(future, Provider.class));
+
+		return future;
 	}
 
 	public Future<Provider> loadProvider(String id, Callback<Provider> callback) {

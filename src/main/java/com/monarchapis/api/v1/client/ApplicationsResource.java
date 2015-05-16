@@ -8,7 +8,7 @@ public interface ApplicationsResource {
 
 	public ApplicationList queryApplications(ApplicationsQuery query);
 
-	public void createApplication(ApplicationUpdate body);
+	public Application createApplication(ApplicationUpdate body);
 
 	public Application loadApplication(String id);
 

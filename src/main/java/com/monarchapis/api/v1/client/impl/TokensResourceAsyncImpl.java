@@ -18,7 +18,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class TokensResourceAsyncImpl extends AbstractResource implements TokensResourceAsync {
 	public TokensResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -60,7 +59,7 @@ public class TokensResourceAsyncImpl extends AbstractResource implements TokensR
 		return future;
 	}
 
-	public void createToken(Token body, VoidCallback callback) {
+	public Future<Token> createToken(Token body, Callback<Token> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/tokens") //
@@ -69,7 +68,10 @@ public class TokensResourceAsyncImpl extends AbstractResource implements TokensR
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Token> future = client.future(callback);
+		client.send(callbackAdapter(future, Token.class));
+
+		return future;
 	}
 
 	public Future<Token> loadToken(String id, Callback<Token> callback) {

@@ -41,7 +41,7 @@ public class PrincipalProfilesResourceImpl extends AbstractResource implements P
 		return parseAs(response, PrincipalProfileList.class);
 	}
 
-	public void createPlan(PrincipalProfileUpdate body) {
+	public PrincipalProfile createPlan(PrincipalProfileUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/principalProfiles") //
@@ -50,7 +50,8 @@ public class PrincipalProfilesResourceImpl extends AbstractResource implements P
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, PrincipalProfile.class);
 	}
 
 	public PrincipalProfile loadPrincipalProfile(String id) {

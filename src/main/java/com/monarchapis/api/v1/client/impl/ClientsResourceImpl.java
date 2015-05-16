@@ -44,7 +44,7 @@ public class ClientsResourceImpl extends AbstractResource implements ClientsReso
 		return parseAs(response, ClientList.class);
 	}
 
-	public void createClient(ClientUpdate body) {
+	public Client createClient(ClientUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/clients") //
@@ -53,7 +53,8 @@ public class ClientsResourceImpl extends AbstractResource implements ClientsReso
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send();
+		final RestResponse response = client.send();
+		return parseAs(response, Client.class);
 	}
 
 	public Client loadClient(String id) {

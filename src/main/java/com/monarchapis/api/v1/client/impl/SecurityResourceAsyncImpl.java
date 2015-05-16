@@ -23,7 +23,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class SecurityResourceAsyncImpl extends AbstractResource implements SecurityResourceAsync {
 	public SecurityResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -68,7 +67,7 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 		return future;
 	}
 
-	public void authenticateClient(ClientAuthenticationRequest body, VoidCallback callback) {
+	public Future<Void> authenticateClient(ClientAuthenticationRequest body, Callback<Void> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/clients/authenticate") //
@@ -77,7 +76,10 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Void> future = client.future(callback);
+		client.send(callbackAdapter(future, Void.class));
+
+		return future;
 	}
 
 	public Future<TokenDetails> createToken(TokenRequest body, Callback<TokenDetails> callback) {
@@ -113,7 +115,7 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 		return future;
 	}
 
-	public void revokeToken(String apiKey, String token, String callbackUri, VoidCallback callback) {
+	public Future<Void> revokeToken(String apiKey, String token, String callbackUri, Callback<Void> callback) {
 		require(apiKey, "apiKey is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/tokens") //
@@ -123,7 +125,10 @@ public class SecurityResourceAsyncImpl extends AbstractResource implements Secur
 				.setQuery("callbackUri", callbackUri);
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Void> future = client.future(callback);
+		client.send(callbackAdapter(future, Void.class));
+
+		return future;
 	}
 
 	public Future<MessageDetailsList> getPermissionMessages(PermissionMessagesRequest body,

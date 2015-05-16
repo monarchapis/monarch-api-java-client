@@ -8,7 +8,7 @@ public interface PermissionsResource {
 
 	public PermissionList queryPermissions(PermissionsQuery query);
 
-	public void createPermission(PermissionUpdate body);
+	public Permission createPermission(PermissionUpdate body);
 
 	public Permission loadPermission(String id);
 

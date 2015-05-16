@@ -8,7 +8,7 @@ public interface ProvidersResource {
 
 	public ProviderList queryProviders(ProvidersQuery query);
 
-	public void createProvider(ProviderUpdate body);
+	public Provider createProvider(ProviderUpdate body);
 
 	public Provider loadProvider(String id);
 

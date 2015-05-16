@@ -17,7 +17,6 @@ import com.monarchapis.client.rest.RequestProcessor;
 import com.monarchapis.client.rest.RestAsyncClient;
 import com.monarchapis.client.rest.RestClientFactory;
 import com.monarchapis.client.rest.RestResponse;
-import com.monarchapis.client.rest.VoidCallback;
 
 public class EventsResourceAsyncImpl extends AbstractResource implements EventsResourceAsync {
 	public EventsResourceAsyncImpl(String baseUrl, RestClientFactory clientFactory,
@@ -44,7 +43,7 @@ public class EventsResourceAsyncImpl extends AbstractResource implements EventsR
 		return future;
 	}
 
-	public void collectEvent(String eventType, ObjectData body, VoidCallback callback) {
+	public Future<Void> collectEvent(String eventType, ObjectData body, Callback<Void> callback) {
 		require(eventType, "eventType is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -55,7 +54,10 @@ public class EventsResourceAsyncImpl extends AbstractResource implements EventsR
 				.setBody(toJson(body));
 
 		signRequest(client);
-		client.send(callback);
+		AsyncFuture<Void> future = client.future(callback);
+		client.send(callbackAdapter(future, Void.class));
+
+		return future;
 	}
 
 	public Future<EventsResponse> queryEvents(String eventType, String start, String end, String query,

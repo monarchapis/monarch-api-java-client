@@ -8,7 +8,7 @@ public interface PrincipalClaimsResource {
 
 	public PrincipalClaimsList queryPrincipalClaims(PrincipalClaimsQuery query);
 
-	public void createPlan(PrincipalClaimsUpdate body);
+	public PrincipalClaims createPlan(PrincipalClaimsUpdate body);
 
 	public PrincipalClaims loadPrincipalClaims(String id);
 
