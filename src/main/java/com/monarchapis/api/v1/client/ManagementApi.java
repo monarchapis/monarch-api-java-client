@@ -6,10 +6,6 @@ public interface ManagementApi {
 
 	ApplicationsResourceAsync getApplicationsResourceAsync();
 
-	AuthenticatorsResource getAuthenticatorsResource();
-
-	AuthenticatorsResourceAsync getAuthenticatorsResourceAsync();
-
 	ClientsResource getClientsResource();
 
 	ClientsResourceAsync getClientsResourceAsync();
@@ -34,6 +30,10 @@ public interface ManagementApi {
 
 	MessagesResourceAsync getMessagesResourceAsync();
 
+	ModulesResource getModulesResource();
+
+	ModulesResourceAsync getModulesResourceAsync();
+
 	PermissionsResource getPermissionsResource();
 
 	PermissionsResourceAsync getPermissionsResourceAsync();
@@ -41,10 +41,6 @@ public interface ManagementApi {
 	PlansResource getPlansResource();
 
 	PlansResourceAsync getPlansResourceAsync();
-
-	PoliciesResource getPoliciesResource();
-
-	PoliciesResourceAsync getPoliciesResourceAsync();
 
 	PrincipalClaimsResource getPrincipalClaimsResource();
 

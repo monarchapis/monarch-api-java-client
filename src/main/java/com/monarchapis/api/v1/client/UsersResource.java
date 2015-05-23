@@ -8,15 +8,15 @@ import com.monarchapis.api.v1.model.UserUpdate;
 
 public interface UsersResource {
 
-	public UserList queryUsers(UsersQuery query);
+	public UserList query(UsersQuery query);
 
-	public User createUser(UserUpdate body);
+	public User create(UserUpdate body);
 
-	public User loadUser(String id);
+	public User load(String id);
 
-	public User updateUser(String id, UserUpdate body);
+	public User update(String id, UserUpdate body);
 
-	public User deleteUser(String id);
+	public User delete(String id);
 
 	public Result setPassword(String id, SetPassword body);
 }

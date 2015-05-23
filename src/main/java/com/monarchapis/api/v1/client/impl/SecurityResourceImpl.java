@@ -66,8 +66,7 @@ public class SecurityResourceImpl extends AbstractResource implements SecurityRe
 				.setBody(toJson(body));
 
 		signRequest(client);
-		final RestResponse response = client.send();
-		checkStatusCode(response);
+		client.send();
 	}
 
 	public TokenDetails createToken(TokenRequest body) {
@@ -108,8 +107,7 @@ public class SecurityResourceImpl extends AbstractResource implements SecurityRe
 				.setQuery("callbackUri", callbackUri);
 
 		signRequest(client);
-		final RestResponse response = client.send();
-		checkStatusCode(response);
+		client.send();
 	}
 
 	public MessageDetailsList getPermissionMessages(PermissionMessagesRequest body) {

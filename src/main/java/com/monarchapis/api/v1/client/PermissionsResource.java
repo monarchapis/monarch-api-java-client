@@ -6,13 +6,13 @@ import com.monarchapis.api.v1.model.PermissionUpdate;
 
 public interface PermissionsResource {
 
-	public PermissionList queryPermissions(PermissionsQuery query);
+	public PermissionList query(PermissionsQuery query);
 
-	public Permission createPermission(PermissionUpdate body);
+	public Permission create(PermissionUpdate body);
 
-	public Permission loadPermission(String id);
+	public Permission load(String id);
 
-	public Permission updatePermission(String id, PermissionUpdate body);
+	public Permission update(String id, PermissionUpdate body);
 
-	public Permission deletePermission(String id);
+	public Permission delete(String id);
 }

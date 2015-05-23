@@ -31,7 +31,7 @@ public class RolesResourceAsyncImpl extends AbstractResource implements RolesRes
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<RoleList> queryRoles(RolesQuery query, Callback<RoleList> callback) {
+	public Future<RoleList> query(RolesQuery query, Callback<RoleList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/roles") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -48,7 +48,7 @@ public class RolesResourceAsyncImpl extends AbstractResource implements RolesRes
 		return future;
 	}
 
-	public Future<Role> createRole(RoleUpdate body, Callback<Role> callback) {
+	public Future<Role> create(RoleUpdate body, Callback<Role> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/roles") //
@@ -63,7 +63,7 @@ public class RolesResourceAsyncImpl extends AbstractResource implements RolesRes
 		return future;
 	}
 
-	public Future<Role> loadRole(String id, Callback<Role> callback) {
+	public Future<Role> load(String id, Callback<Role> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/roles/{id}") //
@@ -77,7 +77,7 @@ public class RolesResourceAsyncImpl extends AbstractResource implements RolesRes
 		return future;
 	}
 
-	public Future<Role> updateRole(String id, RoleUpdate body, Callback<Role> callback) {
+	public Future<Role> update(String id, RoleUpdate body, Callback<Role> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -94,7 +94,7 @@ public class RolesResourceAsyncImpl extends AbstractResource implements RolesRes
 		return future;
 	}
 
-	public Future<Role> deleteRole(String id, Callback<Role> callback) {
+	public Future<Role> delete(String id, Callback<Role> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/roles/{id}") //

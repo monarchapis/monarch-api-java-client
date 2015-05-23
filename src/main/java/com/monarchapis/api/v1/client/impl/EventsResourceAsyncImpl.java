@@ -29,7 +29,7 @@ public class EventsResourceAsyncImpl extends AbstractResource implements EventsR
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<EventDescriptor> getEventDescriptor(String eventType, Callback<EventDescriptor> callback) {
+	public Future<EventDescriptor> getDescriptor(String eventType, Callback<EventDescriptor> callback) {
 		require(eventType, "eventType is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/{eventType}") //
@@ -43,7 +43,7 @@ public class EventsResourceAsyncImpl extends AbstractResource implements EventsR
 		return future;
 	}
 
-	public Future<Void> collectEvent(String eventType, ObjectData body, Callback<Void> callback) {
+	public Future<Void> create(String eventType, ObjectData body, Callback<Void> callback) {
 		require(eventType, "eventType is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -60,7 +60,7 @@ public class EventsResourceAsyncImpl extends AbstractResource implements EventsR
 		return future;
 	}
 
-	public Future<EventsResponse> queryEvents(String eventType, String start, String end, String query,
+	public Future<EventsResponse> query(String eventType, String start, String end, String query,
 			Callback<EventsResponse> callback) {
 		require(eventType, "eventType is a required parameter.");
 		require(end, "end is a required parameter.");

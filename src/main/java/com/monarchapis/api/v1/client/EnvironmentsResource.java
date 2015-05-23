@@ -7,15 +7,15 @@ import com.monarchapis.api.v1.model.EnvironmentUpdate;
 
 public interface EnvironmentsResource {
 
-	public EnvironmentList queryEnvironments(EnvironmentsQuery query);
+	public EnvironmentList query(EnvironmentsQuery query);
 
-	public Environment createEnvironment(EnvironmentUpdate body);
+	public Environment create(EnvironmentUpdate body);
 
-	public Environment loadEnvironment(String id);
+	public Environment load(String id);
 
-	public Environment updateEnvironment(String id, EnvironmentUpdate body);
+	public Environment update(String id, EnvironmentUpdate body);
 
-	public Environment deleteEnvironment(String id);
+	public Environment delete(String id);
 
 	public EnvironmentSummary getSummary();
 }

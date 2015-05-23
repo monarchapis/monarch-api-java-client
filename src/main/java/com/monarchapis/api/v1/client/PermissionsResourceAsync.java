@@ -9,13 +9,13 @@ import com.monarchapis.client.rest.Callback;
 
 public interface PermissionsResourceAsync {
 
-	public Future<PermissionList> queryPermissions(PermissionsQuery query, Callback<PermissionList> callback);
+	public Future<PermissionList> query(PermissionsQuery query, Callback<PermissionList> callback);
 
-	public Future<Permission> createPermission(PermissionUpdate body, Callback<Permission> callback);
+	public Future<Permission> create(PermissionUpdate body, Callback<Permission> callback);
 
-	public Future<Permission> loadPermission(String id, Callback<Permission> callback);
+	public Future<Permission> load(String id, Callback<Permission> callback);
 
-	public Future<Permission> updatePermission(String id, PermissionUpdate body, Callback<Permission> callback);
+	public Future<Permission> update(String id, PermissionUpdate body, Callback<Permission> callback);
 
-	public Future<Permission> deletePermission(String id, Callback<Permission> callback);
+	public Future<Permission> delete(String id, Callback<Permission> callback);
 }

@@ -31,7 +31,7 @@ public class ProvidersResourceAsyncImpl extends AbstractResource implements Prov
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<ProviderList> queryProviders(ProvidersQuery query, Callback<ProviderList> callback) {
+	public Future<ProviderList> query(ProvidersQuery query, Callback<ProviderList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/providers") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -48,7 +48,7 @@ public class ProvidersResourceAsyncImpl extends AbstractResource implements Prov
 		return future;
 	}
 
-	public Future<Provider> createProvider(ProviderUpdate body, Callback<Provider> callback) {
+	public Future<Provider> create(ProviderUpdate body, Callback<Provider> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/providers") //
@@ -63,7 +63,7 @@ public class ProvidersResourceAsyncImpl extends AbstractResource implements Prov
 		return future;
 	}
 
-	public Future<Provider> loadProvider(String id, Callback<Provider> callback) {
+	public Future<Provider> load(String id, Callback<Provider> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/providers/{id}") //
@@ -77,7 +77,7 @@ public class ProvidersResourceAsyncImpl extends AbstractResource implements Prov
 		return future;
 	}
 
-	public Future<Provider> updateProvider(String id, ProviderUpdate body, Callback<Provider> callback) {
+	public Future<Provider> update(String id, ProviderUpdate body, Callback<Provider> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -94,7 +94,7 @@ public class ProvidersResourceAsyncImpl extends AbstractResource implements Prov
 		return future;
 	}
 
-	public Future<Provider> deleteProvider(String id, Callback<Provider> callback) {
+	public Future<Provider> delete(String id, Callback<Provider> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/providers/{id}") //

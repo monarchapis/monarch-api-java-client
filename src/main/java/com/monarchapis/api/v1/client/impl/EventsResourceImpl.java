@@ -24,7 +24,7 @@ public class EventsResourceImpl extends AbstractResource implements EventsResour
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public EventDescriptor getEventDescriptor(String eventType) {
+	public EventDescriptor getDescriptor(String eventType) {
 		require(eventType, "eventType is a required parameter.");
 
 		final RestClient client = newClient("GET", "/{eventType}") //
@@ -50,7 +50,7 @@ public class EventsResourceImpl extends AbstractResource implements EventsResour
 		client.send();
 	}
 
-	public EventsResponse queryEvents(String eventType, String start, String end, String query) {
+	public EventsResponse query(String eventType, String start, String end, String query) {
 		require(eventType, "eventType is a required parameter.");
 		require(end, "end is a required parameter.");
 		require(query, "query is a required parameter.");

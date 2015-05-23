@@ -28,7 +28,7 @@ public class PermissionsResourceImpl extends AbstractResource implements Permiss
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public PermissionList queryPermissions(PermissionsQuery query) {
+	public PermissionList query(PermissionsQuery query) {
 		final RestClient client = newClient("GET", "/permissions") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -46,7 +46,7 @@ public class PermissionsResourceImpl extends AbstractResource implements Permiss
 		return parseAs(response, PermissionList.class);
 	}
 
-	public Permission createPermission(PermissionUpdate body) {
+	public Permission create(PermissionUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/permissions") //
@@ -59,7 +59,7 @@ public class PermissionsResourceImpl extends AbstractResource implements Permiss
 		return parseAs(response, Permission.class);
 	}
 
-	public Permission loadPermission(String id) {
+	public Permission load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/permissions/{id}") //
@@ -71,7 +71,7 @@ public class PermissionsResourceImpl extends AbstractResource implements Permiss
 		return parseAs(response, Permission.class);
 	}
 
-	public Permission updatePermission(String id, PermissionUpdate body) {
+	public Permission update(String id, PermissionUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -86,7 +86,7 @@ public class PermissionsResourceImpl extends AbstractResource implements Permiss
 		return parseAs(response, Permission.class);
 	}
 
-	public Permission deletePermission(String id) {
+	public Permission delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/permissions/{id}") //

@@ -28,7 +28,7 @@ public class PrincipalProfilesResourceImpl extends AbstractResource implements P
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public PrincipalProfileList queryPrincipalProfile(PrincipalProfilesQuery query) {
+	public PrincipalProfileList query(PrincipalProfilesQuery query) {
 		final RestClient client = newClient("GET", "/principalProfiles") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -41,7 +41,7 @@ public class PrincipalProfilesResourceImpl extends AbstractResource implements P
 		return parseAs(response, PrincipalProfileList.class);
 	}
 
-	public PrincipalProfile createPlan(PrincipalProfileUpdate body) {
+	public PrincipalProfile create(PrincipalProfileUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/principalProfiles") //
@@ -54,7 +54,7 @@ public class PrincipalProfilesResourceImpl extends AbstractResource implements P
 		return parseAs(response, PrincipalProfile.class);
 	}
 
-	public PrincipalProfile loadPrincipalProfile(String id) {
+	public PrincipalProfile load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/principalProfiles/{id}") //
@@ -66,7 +66,7 @@ public class PrincipalProfilesResourceImpl extends AbstractResource implements P
 		return parseAs(response, PrincipalProfile.class);
 	}
 
-	public PrincipalProfile updatePrincipalProfile(String id, PrincipalProfileUpdate body) {
+	public PrincipalProfile update(String id, PrincipalProfileUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -81,7 +81,7 @@ public class PrincipalProfilesResourceImpl extends AbstractResource implements P
 		return parseAs(response, PrincipalProfile.class);
 	}
 
-	public PrincipalProfile deletePrincipalProfile(String id) {
+	public PrincipalProfile delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/principalProfiles/{id}") //

@@ -26,7 +26,7 @@ public class ClientsResourceImpl extends AbstractResource implements ClientsReso
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public ClientList queryClients(ClientsQuery query) {
+	public ClientList query(ClientsQuery query) {
 		final RestClient client = newClient("GET", "/clients") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -44,7 +44,7 @@ public class ClientsResourceImpl extends AbstractResource implements ClientsReso
 		return parseAs(response, ClientList.class);
 	}
 
-	public Client createClient(ClientUpdate body) {
+	public Client create(ClientUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/clients") //
@@ -57,7 +57,7 @@ public class ClientsResourceImpl extends AbstractResource implements ClientsReso
 		return parseAs(response, Client.class);
 	}
 
-	public Client loadClient(String id) {
+	public Client load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/clients/{id}") //
@@ -69,7 +69,7 @@ public class ClientsResourceImpl extends AbstractResource implements ClientsReso
 		return parseAs(response, Client.class);
 	}
 
-	public Client updateClient(String id, ClientUpdate body) {
+	public Client update(String id, ClientUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -84,7 +84,7 @@ public class ClientsResourceImpl extends AbstractResource implements ClientsReso
 		return parseAs(response, Client.class);
 	}
 
-	public Client deleteClient(String id) {
+	public Client delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/clients/{id}") //

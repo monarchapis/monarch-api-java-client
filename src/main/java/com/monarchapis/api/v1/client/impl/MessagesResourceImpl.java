@@ -27,7 +27,7 @@ public class MessagesResourceImpl extends AbstractResource implements MessagesRe
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public MessageList queryMessages(MessagesQuery query) {
+	public MessageList query(MessagesQuery query) {
 		final RestClient client = newClient("GET", "/messages") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -41,7 +41,7 @@ public class MessagesResourceImpl extends AbstractResource implements MessagesRe
 		return parseAs(response, MessageList.class);
 	}
 
-	public Message createMessage(MessageUpdate body) {
+	public Message create(MessageUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/messages") //
@@ -54,7 +54,7 @@ public class MessagesResourceImpl extends AbstractResource implements MessagesRe
 		return parseAs(response, Message.class);
 	}
 
-	public Message loadMessage(String id) {
+	public Message load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/messages/{id}") //
@@ -66,7 +66,7 @@ public class MessagesResourceImpl extends AbstractResource implements MessagesRe
 		return parseAs(response, Message.class);
 	}
 
-	public Message updateMessage(String id, MessageUpdate body) {
+	public Message update(String id, MessageUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -81,7 +81,7 @@ public class MessagesResourceImpl extends AbstractResource implements MessagesRe
 		return parseAs(response, Message.class);
 	}
 
-	public Message deleteMessage(String id) {
+	public Message delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/messages/{id}") //

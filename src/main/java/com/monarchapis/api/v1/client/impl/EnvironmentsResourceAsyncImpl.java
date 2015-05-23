@@ -32,7 +32,7 @@ public class EnvironmentsResourceAsyncImpl extends AbstractResource implements E
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<EnvironmentList> queryEnvironments(EnvironmentsQuery query, Callback<EnvironmentList> callback) {
+	public Future<EnvironmentList> query(EnvironmentsQuery query, Callback<EnvironmentList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/environments") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -50,7 +50,7 @@ public class EnvironmentsResourceAsyncImpl extends AbstractResource implements E
 		return future;
 	}
 
-	public Future<Environment> createEnvironment(EnvironmentUpdate body, Callback<Environment> callback) {
+	public Future<Environment> create(EnvironmentUpdate body, Callback<Environment> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/environments") //
@@ -65,7 +65,7 @@ public class EnvironmentsResourceAsyncImpl extends AbstractResource implements E
 		return future;
 	}
 
-	public Future<Environment> loadEnvironment(String id, Callback<Environment> callback) {
+	public Future<Environment> load(String id, Callback<Environment> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/environments/{id}") //
@@ -79,7 +79,7 @@ public class EnvironmentsResourceAsyncImpl extends AbstractResource implements E
 		return future;
 	}
 
-	public Future<Environment> updateEnvironment(String id, EnvironmentUpdate body, Callback<Environment> callback) {
+	public Future<Environment> update(String id, EnvironmentUpdate body, Callback<Environment> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -96,7 +96,7 @@ public class EnvironmentsResourceAsyncImpl extends AbstractResource implements E
 		return future;
 	}
 
-	public Future<Environment> deleteEnvironment(String id, Callback<Environment> callback) {
+	public Future<Environment> delete(String id, Callback<Environment> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/environments/{id}") //

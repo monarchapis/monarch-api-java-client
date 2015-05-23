@@ -9,10 +9,10 @@ import com.monarchapis.client.rest.Callback;
 
 public interface EventsResourceAsync {
 
-	public Future<EventDescriptor> getEventDescriptor(String eventType, Callback<EventDescriptor> callback);
+	public Future<EventDescriptor> getDescriptor(String eventType, Callback<EventDescriptor> callback);
 
-	public Future<Void> collectEvent(String eventType, ObjectData body, Callback<Void> callback);
+	public Future<Void> create(String eventType, ObjectData body, Callback<Void> callback);
 
-	public Future<EventsResponse> queryEvents(String eventType, String start, String end, String query,
+	public Future<EventsResponse> query(String eventType, String start, String end, String query,
 			Callback<EventsResponse> callback);
 }

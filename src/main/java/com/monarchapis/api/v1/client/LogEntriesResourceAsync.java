@@ -9,13 +9,13 @@ import com.monarchapis.client.rest.Callback;
 
 public interface LogEntriesResourceAsync {
 
-	public Future<LogEntryList> queryLogEntries(LogEntriesQuery query, Callback<LogEntryList> callback);
+	public Future<LogEntryList> query(LogEntriesQuery query, Callback<LogEntryList> callback);
 
-	public Future<LogEntry> createLogEntry(LogEntryUpdate body, Callback<LogEntry> callback);
+	public Future<LogEntry> create(LogEntryUpdate body, Callback<LogEntry> callback);
 
-	public Future<LogEntry> loadLogEntry(String id, Callback<LogEntry> callback);
+	public Future<LogEntry> load(String id, Callback<LogEntry> callback);
 
-	public Future<LogEntry> updateLogEntry(String id, LogEntryUpdate body, Callback<LogEntry> callback);
+	public Future<LogEntry> update(String id, LogEntryUpdate body, Callback<LogEntry> callback);
 
-	public Future<LogEntry> deleteLogEntry(String id, Callback<LogEntry> callback);
+	public Future<LogEntry> delete(String id, Callback<LogEntry> callback);
 }

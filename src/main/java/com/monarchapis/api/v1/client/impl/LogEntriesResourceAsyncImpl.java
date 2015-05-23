@@ -31,7 +31,7 @@ public class LogEntriesResourceAsyncImpl extends AbstractResource implements Log
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<LogEntryList> queryLogEntries(LogEntriesQuery query, Callback<LogEntryList> callback) {
+	public Future<LogEntryList> query(LogEntriesQuery query, Callback<LogEntryList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/logEntries") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -47,7 +47,7 @@ public class LogEntriesResourceAsyncImpl extends AbstractResource implements Log
 		return future;
 	}
 
-	public Future<LogEntry> createLogEntry(LogEntryUpdate body, Callback<LogEntry> callback) {
+	public Future<LogEntry> create(LogEntryUpdate body, Callback<LogEntry> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/logEntries") //
@@ -62,7 +62,7 @@ public class LogEntriesResourceAsyncImpl extends AbstractResource implements Log
 		return future;
 	}
 
-	public Future<LogEntry> loadLogEntry(String id, Callback<LogEntry> callback) {
+	public Future<LogEntry> load(String id, Callback<LogEntry> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/logEntries/{id}") //
@@ -76,7 +76,7 @@ public class LogEntriesResourceAsyncImpl extends AbstractResource implements Log
 		return future;
 	}
 
-	public Future<LogEntry> updateLogEntry(String id, LogEntryUpdate body, Callback<LogEntry> callback) {
+	public Future<LogEntry> update(String id, LogEntryUpdate body, Callback<LogEntry> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -93,7 +93,7 @@ public class LogEntriesResourceAsyncImpl extends AbstractResource implements Log
 		return future;
 	}
 
-	public Future<LogEntry> deleteLogEntry(String id, Callback<LogEntry> callback) {
+	public Future<LogEntry> delete(String id, Callback<LogEntry> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/logEntries/{id}") //

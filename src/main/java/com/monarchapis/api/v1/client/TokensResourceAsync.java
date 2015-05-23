@@ -8,13 +8,13 @@ import com.monarchapis.client.rest.Callback;
 
 public interface TokensResourceAsync {
 
-	public Future<TokenList> queryTokens(TokensQuery query, Callback<TokenList> callback);
+	public Future<TokenList> query(TokensQuery query, Callback<TokenList> callback);
 
-	public Future<Token> createToken(Token body, Callback<Token> callback);
+	public Future<Token> create(Token body, Callback<Token> callback);
 
-	public Future<Token> loadToken(String id, Callback<Token> callback);
+	public Future<Token> load(String id, Callback<Token> callback);
 
-	public Future<Token> updateToken(String id, Token body, Callback<Token> callback);
+	public Future<Token> update(String id, Token body, Callback<Token> callback);
 
-	public Future<Token> deleteToken(String id, Callback<Token> callback);
+	public Future<Token> delete(String id, Callback<Token> callback);
 }

@@ -26,7 +26,7 @@ public class RolesResourceImpl extends AbstractResource implements RolesResource
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public RoleList queryRoles(RolesQuery query) {
+	public RoleList query(RolesQuery query) {
 		final RestClient client = newClient("GET", "/roles") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -41,7 +41,7 @@ public class RolesResourceImpl extends AbstractResource implements RolesResource
 		return parseAs(response, RoleList.class);
 	}
 
-	public Role createRole(RoleUpdate body) {
+	public Role create(RoleUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/roles") //
@@ -54,7 +54,7 @@ public class RolesResourceImpl extends AbstractResource implements RolesResource
 		return parseAs(response, Role.class);
 	}
 
-	public Role loadRole(String id) {
+	public Role load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/roles/{id}") //
@@ -66,7 +66,7 @@ public class RolesResourceImpl extends AbstractResource implements RolesResource
 		return parseAs(response, Role.class);
 	}
 
-	public Role updateRole(String id, RoleUpdate body) {
+	public Role update(String id, RoleUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -81,7 +81,7 @@ public class RolesResourceImpl extends AbstractResource implements RolesResource
 		return parseAs(response, Role.class);
 	}
 
-	public Role deleteRole(String id) {
+	public Role delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/roles/{id}") //

@@ -6,13 +6,13 @@ import com.monarchapis.api.v1.model.PrincipalProfileUpdate;
 
 public interface PrincipalProfilesResource {
 
-	public PrincipalProfileList queryPrincipalProfile(PrincipalProfilesQuery query);
+	public PrincipalProfileList query(PrincipalProfilesQuery query);
 
-	public PrincipalProfile createPlan(PrincipalProfileUpdate body);
+	public PrincipalProfile create(PrincipalProfileUpdate body);
 
-	public PrincipalProfile loadPrincipalProfile(String id);
+	public PrincipalProfile load(String id);
 
-	public PrincipalProfile updatePrincipalProfile(String id, PrincipalProfileUpdate body);
+	public PrincipalProfile update(String id, PrincipalProfileUpdate body);
 
-	public PrincipalProfile deletePrincipalProfile(String id);
+	public PrincipalProfile delete(String id);
 }

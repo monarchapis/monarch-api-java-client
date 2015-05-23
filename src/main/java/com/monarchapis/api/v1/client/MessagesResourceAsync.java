@@ -9,13 +9,13 @@ import com.monarchapis.client.rest.Callback;
 
 public interface MessagesResourceAsync {
 
-	public Future<MessageList> queryMessages(MessagesQuery query, Callback<MessageList> callback);
+	public Future<MessageList> query(MessagesQuery query, Callback<MessageList> callback);
 
-	public Future<Message> createMessage(MessageUpdate body, Callback<Message> callback);
+	public Future<Message> create(MessageUpdate body, Callback<Message> callback);
 
-	public Future<Message> loadMessage(String id, Callback<Message> callback);
+	public Future<Message> load(String id, Callback<Message> callback);
 
-	public Future<Message> updateMessage(String id, MessageUpdate body, Callback<Message> callback);
+	public Future<Message> update(String id, MessageUpdate body, Callback<Message> callback);
 
-	public Future<Message> deleteMessage(String id, Callback<Message> callback);
+	public Future<Message> delete(String id, Callback<Message> callback);
 }

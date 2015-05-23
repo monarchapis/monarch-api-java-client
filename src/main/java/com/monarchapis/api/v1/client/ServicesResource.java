@@ -6,13 +6,13 @@ import com.monarchapis.api.v1.model.ServiceUpdate;
 
 public interface ServicesResource {
 
-	public ServiceList queryServices(ServicesQuery query);
+	public ServiceList query(ServicesQuery query);
 
-	public Service createService(ServiceUpdate body);
+	public Service create(ServiceUpdate body);
 
-	public Service loadService(String id);
+	public Service load(String id);
 
-	public Service updateService(String id, ServiceUpdate body);
+	public Service update(String id, ServiceUpdate body);
 
-	public Service deleteService(String id);
+	public Service delete(String id);
 }

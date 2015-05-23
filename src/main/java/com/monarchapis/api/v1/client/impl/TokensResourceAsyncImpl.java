@@ -30,7 +30,7 @@ public class TokensResourceAsyncImpl extends AbstractResource implements TokensR
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<TokenList> queryTokens(TokensQuery query, Callback<TokenList> callback) {
+	public Future<TokenList> query(TokensQuery query, Callback<TokenList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/tokens") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -59,7 +59,7 @@ public class TokensResourceAsyncImpl extends AbstractResource implements TokensR
 		return future;
 	}
 
-	public Future<Token> createToken(Token body, Callback<Token> callback) {
+	public Future<Token> create(Token body, Callback<Token> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/tokens") //
@@ -74,7 +74,7 @@ public class TokensResourceAsyncImpl extends AbstractResource implements TokensR
 		return future;
 	}
 
-	public Future<Token> loadToken(String id, Callback<Token> callback) {
+	public Future<Token> load(String id, Callback<Token> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/tokens/{id}") //
@@ -88,7 +88,7 @@ public class TokensResourceAsyncImpl extends AbstractResource implements TokensR
 		return future;
 	}
 
-	public Future<Token> updateToken(String id, Token body, Callback<Token> callback) {
+	public Future<Token> update(String id, Token body, Callback<Token> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -105,7 +105,7 @@ public class TokensResourceAsyncImpl extends AbstractResource implements TokensR
 		return future;
 	}
 
-	public Future<Token> deleteToken(String id, Callback<Token> callback) {
+	public Future<Token> delete(String id, Callback<Token> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/tokens/{id}") //

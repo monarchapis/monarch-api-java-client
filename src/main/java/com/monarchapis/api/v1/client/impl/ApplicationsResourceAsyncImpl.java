@@ -11,6 +11,10 @@ import com.monarchapis.api.v1.client.ApplicationsResourceAsync;
 import com.monarchapis.api.v1.model.Application;
 import com.monarchapis.api.v1.model.ApplicationList;
 import com.monarchapis.api.v1.model.ApplicationUpdate;
+import com.monarchapis.api.v1.model.ClientList;
+import com.monarchapis.api.v1.model.Developer;
+import com.monarchapis.api.v1.model.DeveloperList;
+import com.monarchapis.api.v1.model.Result;
 import com.monarchapis.client.resource.AbstractResource;
 import com.monarchapis.client.rest.AsyncFuture;
 import com.monarchapis.client.rest.BaseClient.CollectionFormat;
@@ -31,7 +35,7 @@ public class ApplicationsResourceAsyncImpl extends AbstractResource implements A
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<ApplicationList> queryApplications(ApplicationsQuery query, Callback<ApplicationList> callback) {
+	public Future<ApplicationList> query(ApplicationsQuery query, Callback<ApplicationList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/applications") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -55,7 +59,7 @@ public class ApplicationsResourceAsyncImpl extends AbstractResource implements A
 		return future;
 	}
 
-	public Future<Application> createApplication(ApplicationUpdate body, Callback<Application> callback) {
+	public Future<Application> create(ApplicationUpdate body, Callback<Application> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/applications") //
@@ -70,7 +74,7 @@ public class ApplicationsResourceAsyncImpl extends AbstractResource implements A
 		return future;
 	}
 
-	public Future<Application> loadApplication(String id, Callback<Application> callback) {
+	public Future<Application> load(String id, Callback<Application> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/applications/{id}") //
@@ -84,7 +88,7 @@ public class ApplicationsResourceAsyncImpl extends AbstractResource implements A
 		return future;
 	}
 
-	public Future<Application> updateApplication(String id, ApplicationUpdate body, Callback<Application> callback) {
+	public Future<Application> update(String id, ApplicationUpdate body, Callback<Application> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -101,7 +105,7 @@ public class ApplicationsResourceAsyncImpl extends AbstractResource implements A
 		return future;
 	}
 
-	public Future<Application> deleteApplication(String id, Callback<Application> callback) {
+	public Future<Application> delete(String id, Callback<Application> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/applications/{id}") //
@@ -111,6 +115,80 @@ public class ApplicationsResourceAsyncImpl extends AbstractResource implements A
 		signRequest(client);
 		AsyncFuture<Application> future = client.future(callback);
 		client.send(callbackAdapter(future, Application.class));
+
+		return future;
+	}
+
+	public Future<ClientList> getClients(String id, Callback<ClientList> callback) {
+		require(id, "id is a required parameter.");
+
+		final RestAsyncClient client = newAsyncClient("GET", "/applications/{id}/clients") //
+				.accepts("application/json") //
+				.setPath("id", id);
+
+		signRequest(client);
+		AsyncFuture<ClientList> future = client.future(callback);
+		client.send(callbackAdapter(future, ClientList.class));
+
+		return future;
+	}
+
+	public Future<DeveloperList> getDevelopers(String id, Callback<DeveloperList> callback) {
+		require(id, "id is a required parameter.");
+
+		final RestAsyncClient client = newAsyncClient("GET", "/applications/{id}/developers") //
+				.accepts("application/json") //
+				.setPath("id", id);
+
+		signRequest(client);
+		AsyncFuture<DeveloperList> future = client.future(callback);
+		client.send(callbackAdapter(future, DeveloperList.class));
+
+		return future;
+	}
+
+	public Future<Developer> getDeveloper(String id, String developerId, Callback<Developer> callback) {
+		require(id, "id is a required parameter.");
+
+		final RestAsyncClient client = newAsyncClient("GET", "/applications/{id}/developers/{developerId}") //
+				.accepts("application/json") //
+				.setPath("id", id) //
+				.setPath("developerId", developerId);
+
+		signRequest(client);
+		AsyncFuture<Developer> future = client.future(callback);
+		client.send(callbackAdapter(future, Developer.class));
+
+		return future;
+	}
+
+	public Future<Developer> addApplication(String id, String developerId, Callback<Developer> callback) {
+		require(id, "id is a required parameter.");
+
+		final RestAsyncClient client = newAsyncClient("PUT", "/applications/{id}/developers/{developerId}") //
+				.accepts("application/json") //
+				.contentType("application/json") //
+				.setPath("id", id) //
+				.setPath("developerId", developerId);
+
+		signRequest(client);
+		AsyncFuture<Developer> future = client.future(callback);
+		client.send(callbackAdapter(future, Developer.class));
+
+		return future;
+	}
+
+	public Future<Result> removeDeveloper(String id, String developerId, Callback<Result> callback) {
+		require(id, "id is a required parameter.");
+
+		final RestAsyncClient client = newAsyncClient("DELETE", "/applications/{id}/developers/{developerId}") //
+				.accepts("application/json") //
+				.setPath("id", id) //
+				.setPath("developerId", developerId);
+
+		signRequest(client);
+		AsyncFuture<Result> future = client.future(callback);
+		client.send(callbackAdapter(future, Result.class));
 
 		return future;
 	}

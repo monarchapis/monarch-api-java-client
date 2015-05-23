@@ -7,9 +7,14 @@ import com.monarchapis.api.exception.ApiError;
 import com.monarchapis.api.exception.ApiErrorException;
 import com.monarchapis.api.v1.client.DevelopersQuery;
 import com.monarchapis.api.v1.client.DevelopersResource;
+import com.monarchapis.api.v1.model.Application;
+import com.monarchapis.api.v1.model.ApplicationList;
+import com.monarchapis.api.v1.model.Authentication;
 import com.monarchapis.api.v1.model.Developer;
 import com.monarchapis.api.v1.model.DeveloperList;
 import com.monarchapis.api.v1.model.DeveloperUpdate;
+import com.monarchapis.api.v1.model.Result;
+import com.monarchapis.api.v1.model.SetPassword;
 import com.monarchapis.client.resource.AbstractResource;
 import com.monarchapis.client.rest.BaseClient.CollectionFormat;
 import com.monarchapis.client.rest.RequestProcessor;
@@ -28,7 +33,7 @@ public class DevelopersResourceImpl extends AbstractResource implements Develope
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public DeveloperList queryDevelopers(DevelopersQuery query) {
+	public DeveloperList query(DevelopersQuery query) {
 		final RestClient client = newClient("GET", "/developers") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -57,7 +62,7 @@ public class DevelopersResourceImpl extends AbstractResource implements Develope
 		return parseAs(response, DeveloperList.class);
 	}
 
-	public Developer createDeveloper(DeveloperUpdate body) {
+	public Developer create(DeveloperUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/developers") //
@@ -70,7 +75,7 @@ public class DevelopersResourceImpl extends AbstractResource implements Develope
 		return parseAs(response, Developer.class);
 	}
 
-	public Developer loadDeveloper(String id) {
+	public Developer load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/developers/{id}") //
@@ -82,7 +87,7 @@ public class DevelopersResourceImpl extends AbstractResource implements Develope
 		return parseAs(response, Developer.class);
 	}
 
-	public Developer updateDeveloper(String id, DeveloperUpdate body) {
+	public Developer update(String id, DeveloperUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -97,12 +102,92 @@ public class DevelopersResourceImpl extends AbstractResource implements Develope
 		return parseAs(response, Developer.class);
 	}
 
-	public Developer deleteDeveloper(String id) {
+	public Developer delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/developers/{id}") //
 				.accepts("application/json") //
 				.setPath("id", id);
+
+		signRequest(client);
+		final RestResponse response = client.send();
+		return parseAs(response, Developer.class);
+	}
+
+	public Result setPassword(String id, SetPassword body) {
+		require(id, "id is a required parameter.");
+		require(body, "body is a required parameter.");
+
+		final RestClient client = newClient("PUT", "/developers/{id}/password") //
+				.accepts("application/json") //
+				.contentType("application/json") //
+				.setPath("id", id) //
+				.setBody(toJson(body));
+
+		signRequest(client);
+		final RestResponse response = client.send();
+		return parseAs(response, Result.class);
+	}
+
+	public ApplicationList getApplications(String id) {
+		require(id, "id is a required parameter.");
+
+		final RestClient client = newClient("GET", "/developers/{id}/applications") //
+				.accepts("application/json") //
+				.setPath("id", id);
+
+		signRequest(client);
+		final RestResponse response = client.send();
+		return parseAs(response, ApplicationList.class);
+	}
+
+	public Application getApplication(String id, String applicationId) {
+		require(id, "id is a required parameter.");
+
+		final RestClient client = newClient("GET", "/developers/{id}/applications/{applicationId}") //
+				.accepts("application/json") //
+				.setPath("id", id) //
+				.setPath("applicationId", applicationId);
+
+		signRequest(client);
+		final RestResponse response = client.send();
+		return parseAs(response, Application.class);
+	}
+
+	public Application addApplication(String id, String applicationId) {
+		require(id, "id is a required parameter.");
+
+		final RestClient client = newClient("PUT", "/developers/{id}/applications/{applicationId}") //
+				.accepts("application/json") //
+				.contentType("application/json") //
+				.setPath("id", id) //
+				.setPath("applicationId", applicationId);
+
+		signRequest(client);
+		final RestResponse response = client.send();
+		return parseAs(response, Application.class);
+	}
+
+	public Result removeApplication(String id, String applicationId) {
+		require(id, "id is a required parameter.");
+
+		final RestClient client = newClient("DELETE", "/developers/{id}/applications/{applicationId}") //
+				.accepts("application/json") //
+				.setPath("id", id) //
+				.setPath("applicationId", applicationId);
+
+		signRequest(client);
+		final RestResponse response = client.send();
+		return parseAs(response, Result.class);
+	}
+
+	public Developer authenticate(Authentication body) {
+		require(body, "body is a required parameter.");
+
+		final RestClient client = newClient("POST", "/developers/authenticate") //
+				.accepts("application/json") //
+				.contentType("application/json") //
+				.setBody(toJson(body));
 
 		signRequest(client);
 		final RestResponse response = client.send();

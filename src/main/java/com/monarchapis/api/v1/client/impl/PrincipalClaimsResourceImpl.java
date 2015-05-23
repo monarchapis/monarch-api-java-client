@@ -28,7 +28,7 @@ public class PrincipalClaimsResourceImpl extends AbstractResource implements Pri
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public PrincipalClaimsList queryPrincipalClaims(PrincipalClaimsQuery query) {
+	public PrincipalClaimsList query(PrincipalClaimsQuery query) {
 		final RestClient client = newClient("GET", "/principalClaims") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -42,7 +42,7 @@ public class PrincipalClaimsResourceImpl extends AbstractResource implements Pri
 		return parseAs(response, PrincipalClaimsList.class);
 	}
 
-	public PrincipalClaims createPlan(PrincipalClaimsUpdate body) {
+	public PrincipalClaims create(PrincipalClaimsUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/principalClaims") //
@@ -55,7 +55,7 @@ public class PrincipalClaimsResourceImpl extends AbstractResource implements Pri
 		return parseAs(response, PrincipalClaims.class);
 	}
 
-	public PrincipalClaims loadPrincipalClaims(String id) {
+	public PrincipalClaims load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/principalClaims/{id}") //
@@ -67,7 +67,7 @@ public class PrincipalClaimsResourceImpl extends AbstractResource implements Pri
 		return parseAs(response, PrincipalClaims.class);
 	}
 
-	public PrincipalClaims updatePrincipalClaims(String id, PrincipalClaimsUpdate body) {
+	public PrincipalClaims update(String id, PrincipalClaimsUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -82,7 +82,7 @@ public class PrincipalClaimsResourceImpl extends AbstractResource implements Pri
 		return parseAs(response, PrincipalClaims.class);
 	}
 
-	public PrincipalClaims deletePrincipalClaims(String id) {
+	public PrincipalClaims delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/principalClaims/{id}") //

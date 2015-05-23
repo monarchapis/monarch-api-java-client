@@ -25,7 +25,7 @@ public class TokensResourceImpl extends AbstractResource implements TokensResour
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public TokenList queryTokens(TokensQuery query) {
+	public TokenList query(TokensQuery query) {
 		final RestClient client = newClient("GET", "/tokens") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -52,7 +52,7 @@ public class TokensResourceImpl extends AbstractResource implements TokensResour
 		return parseAs(response, TokenList.class);
 	}
 
-	public Token createToken(Token body) {
+	public Token create(Token body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/tokens") //
@@ -65,7 +65,7 @@ public class TokensResourceImpl extends AbstractResource implements TokensResour
 		return parseAs(response, Token.class);
 	}
 
-	public Token loadToken(String id) {
+	public Token load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/tokens/{id}") //
@@ -77,7 +77,7 @@ public class TokensResourceImpl extends AbstractResource implements TokensResour
 		return parseAs(response, Token.class);
 	}
 
-	public Token updateToken(String id, Token body) {
+	public Token update(String id, Token body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -92,7 +92,7 @@ public class TokensResourceImpl extends AbstractResource implements TokensResour
 		return parseAs(response, Token.class);
 	}
 
-	public Token deleteToken(String id) {
+	public Token delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/tokens/{id}") //

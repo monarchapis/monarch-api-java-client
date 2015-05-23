@@ -9,15 +9,13 @@ import com.monarchapis.client.rest.Callback;
 
 public interface PrincipalProfilesResourceAsync {
 
-	public Future<PrincipalProfileList> queryPrincipalProfile(PrincipalProfilesQuery query,
-			Callback<PrincipalProfileList> callback);
+	public Future<PrincipalProfileList> query(PrincipalProfilesQuery query, Callback<PrincipalProfileList> callback);
 
-	public Future<PrincipalProfile> createPlan(PrincipalProfileUpdate body, Callback<PrincipalProfile> callback);
+	public Future<PrincipalProfile> create(PrincipalProfileUpdate body, Callback<PrincipalProfile> callback);
 
-	public Future<PrincipalProfile> loadPrincipalProfile(String id, Callback<PrincipalProfile> callback);
+	public Future<PrincipalProfile> load(String id, Callback<PrincipalProfile> callback);
 
-	public Future<PrincipalProfile> updatePrincipalProfile(String id, PrincipalProfileUpdate body,
-			Callback<PrincipalProfile> callback);
+	public Future<PrincipalProfile> update(String id, PrincipalProfileUpdate body, Callback<PrincipalProfile> callback);
 
-	public Future<PrincipalProfile> deletePrincipalProfile(String id, Callback<PrincipalProfile> callback);
+	public Future<PrincipalProfile> delete(String id, Callback<PrincipalProfile> callback);
 }

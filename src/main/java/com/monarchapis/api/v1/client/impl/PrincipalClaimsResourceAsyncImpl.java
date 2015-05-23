@@ -31,8 +31,7 @@ public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implement
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<PrincipalClaimsList> queryPrincipalClaims(PrincipalClaimsQuery query,
-			Callback<PrincipalClaimsList> callback) {
+	public Future<PrincipalClaimsList> query(PrincipalClaimsQuery query, Callback<PrincipalClaimsList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/principalClaims") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -48,7 +47,7 @@ public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implement
 		return future;
 	}
 
-	public Future<PrincipalClaims> createPlan(PrincipalClaimsUpdate body, Callback<PrincipalClaims> callback) {
+	public Future<PrincipalClaims> create(PrincipalClaimsUpdate body, Callback<PrincipalClaims> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/principalClaims") //
@@ -63,7 +62,7 @@ public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implement
 		return future;
 	}
 
-	public Future<PrincipalClaims> loadPrincipalClaims(String id, Callback<PrincipalClaims> callback) {
+	public Future<PrincipalClaims> load(String id, Callback<PrincipalClaims> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/principalClaims/{id}") //
@@ -77,8 +76,7 @@ public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implement
 		return future;
 	}
 
-	public Future<PrincipalClaims> updatePrincipalClaims(String id, PrincipalClaimsUpdate body,
-			Callback<PrincipalClaims> callback) {
+	public Future<PrincipalClaims> update(String id, PrincipalClaimsUpdate body, Callback<PrincipalClaims> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -95,7 +93,7 @@ public class PrincipalClaimsResourceAsyncImpl extends AbstractResource implement
 		return future;
 	}
 
-	public Future<PrincipalClaims> deletePrincipalClaims(String id, Callback<PrincipalClaims> callback) {
+	public Future<PrincipalClaims> delete(String id, Callback<PrincipalClaims> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/principalClaims/{id}") //

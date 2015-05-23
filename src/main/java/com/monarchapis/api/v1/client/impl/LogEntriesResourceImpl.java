@@ -28,7 +28,7 @@ public class LogEntriesResourceImpl extends AbstractResource implements LogEntri
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public LogEntryList queryLogEntries(LogEntriesQuery query) {
+	public LogEntryList query(LogEntriesQuery query) {
 		final RestClient client = newClient("GET", "/logEntries") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -42,7 +42,7 @@ public class LogEntriesResourceImpl extends AbstractResource implements LogEntri
 		return parseAs(response, LogEntryList.class);
 	}
 
-	public LogEntry createLogEntry(LogEntryUpdate body) {
+	public LogEntry create(LogEntryUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/logEntries") //
@@ -55,7 +55,7 @@ public class LogEntriesResourceImpl extends AbstractResource implements LogEntri
 		return parseAs(response, LogEntry.class);
 	}
 
-	public LogEntry loadLogEntry(String id) {
+	public LogEntry load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/logEntries/{id}") //
@@ -67,7 +67,7 @@ public class LogEntriesResourceImpl extends AbstractResource implements LogEntri
 		return parseAs(response, LogEntry.class);
 	}
 
-	public LogEntry updateLogEntry(String id, LogEntryUpdate body) {
+	public LogEntry update(String id, LogEntryUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -82,7 +82,7 @@ public class LogEntriesResourceImpl extends AbstractResource implements LogEntri
 		return parseAs(response, LogEntry.class);
 	}
 
-	public LogEntry deleteLogEntry(String id) {
+	public LogEntry delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/logEntries/{id}") //

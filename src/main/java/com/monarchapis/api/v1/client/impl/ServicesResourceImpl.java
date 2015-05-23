@@ -27,7 +27,7 @@ public class ServicesResourceImpl extends AbstractResource implements ServicesRe
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public ServiceList queryServices(ServicesQuery query) {
+	public ServiceList query(ServicesQuery query) {
 		final RestClient client = newClient("GET", "/services") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -47,7 +47,7 @@ public class ServicesResourceImpl extends AbstractResource implements ServicesRe
 		return parseAs(response, ServiceList.class);
 	}
 
-	public Service createService(ServiceUpdate body) {
+	public Service create(ServiceUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/services") //
@@ -60,7 +60,7 @@ public class ServicesResourceImpl extends AbstractResource implements ServicesRe
 		return parseAs(response, Service.class);
 	}
 
-	public Service loadService(String id) {
+	public Service load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/services/{id}") //
@@ -72,7 +72,7 @@ public class ServicesResourceImpl extends AbstractResource implements ServicesRe
 		return parseAs(response, Service.class);
 	}
 
-	public Service updateService(String id, ServiceUpdate body) {
+	public Service update(String id, ServiceUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -87,7 +87,7 @@ public class ServicesResourceImpl extends AbstractResource implements ServicesRe
 		return parseAs(response, Service.class);
 	}
 
-	public Service deleteService(String id) {
+	public Service delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/services/{id}") //

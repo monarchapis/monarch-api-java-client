@@ -27,7 +27,7 @@ public class ProvidersResourceImpl extends AbstractResource implements Providers
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public ProviderList queryProviders(ProvidersQuery query) {
+	public ProviderList query(ProvidersQuery query) {
 		final RestClient client = newClient("GET", "/providers") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -42,7 +42,7 @@ public class ProvidersResourceImpl extends AbstractResource implements Providers
 		return parseAs(response, ProviderList.class);
 	}
 
-	public Provider createProvider(ProviderUpdate body) {
+	public Provider create(ProviderUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/providers") //
@@ -55,7 +55,7 @@ public class ProvidersResourceImpl extends AbstractResource implements Providers
 		return parseAs(response, Provider.class);
 	}
 
-	public Provider loadProvider(String id) {
+	public Provider load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/providers/{id}") //
@@ -67,7 +67,7 @@ public class ProvidersResourceImpl extends AbstractResource implements Providers
 		return parseAs(response, Provider.class);
 	}
 
-	public Provider updateProvider(String id, ProviderUpdate body) {
+	public Provider update(String id, ProviderUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -82,7 +82,7 @@ public class ProvidersResourceImpl extends AbstractResource implements Providers
 		return parseAs(response, Provider.class);
 	}
 
-	public Provider deleteProvider(String id) {
+	public Provider delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/providers/{id}") //

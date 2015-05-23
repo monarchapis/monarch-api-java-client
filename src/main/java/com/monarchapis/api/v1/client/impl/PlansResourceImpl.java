@@ -26,7 +26,7 @@ public class PlansResourceImpl extends AbstractResource implements PlansResource
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public PlanList queryPlans(PlansQuery query) {
+	public PlanList query(PlansQuery query) {
 		final RestClient client = newClient("GET", "/plans") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -41,7 +41,7 @@ public class PlansResourceImpl extends AbstractResource implements PlansResource
 		return parseAs(response, PlanList.class);
 	}
 
-	public Plan createPlan(PlanUpdate body) {
+	public Plan create(PlanUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/plans") //
@@ -54,7 +54,7 @@ public class PlansResourceImpl extends AbstractResource implements PlansResource
 		return parseAs(response, Plan.class);
 	}
 
-	public Plan loadPlan(String id) {
+	public Plan load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/plans/{id}") //
@@ -66,7 +66,7 @@ public class PlansResourceImpl extends AbstractResource implements PlansResource
 		return parseAs(response, Plan.class);
 	}
 
-	public Plan updatePlan(String id, PlanUpdate body) {
+	public Plan update(String id, PlanUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -81,7 +81,7 @@ public class PlansResourceImpl extends AbstractResource implements PlansResource
 		return parseAs(response, Plan.class);
 	}
 
-	public Plan deletePlan(String id) {
+	public Plan delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/plans/{id}") //

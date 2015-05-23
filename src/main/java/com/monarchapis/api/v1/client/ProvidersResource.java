@@ -6,13 +6,13 @@ import com.monarchapis.api.v1.model.ProviderUpdate;
 
 public interface ProvidersResource {
 
-	public ProviderList queryProviders(ProvidersQuery query);
+	public ProviderList query(ProvidersQuery query);
 
-	public Provider createProvider(ProviderUpdate body);
+	public Provider create(ProviderUpdate body);
 
-	public Provider loadProvider(String id);
+	public Provider load(String id);
 
-	public Provider updateProvider(String id, ProviderUpdate body);
+	public Provider update(String id, ProviderUpdate body);
 
-	public Provider deleteProvider(String id);
+	public Provider delete(String id);
 }

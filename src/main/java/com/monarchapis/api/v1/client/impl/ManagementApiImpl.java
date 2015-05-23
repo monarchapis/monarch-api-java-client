@@ -7,8 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.Lists;
 import com.monarchapis.api.v1.client.ApplicationsResource;
 import com.monarchapis.api.v1.client.ApplicationsResourceAsync;
-import com.monarchapis.api.v1.client.AuthenticatorsResource;
-import com.monarchapis.api.v1.client.AuthenticatorsResourceAsync;
 import com.monarchapis.api.v1.client.ClientsResource;
 import com.monarchapis.api.v1.client.ClientsResourceAsync;
 import com.monarchapis.api.v1.client.DevelopersResource;
@@ -22,12 +20,12 @@ import com.monarchapis.api.v1.client.MeResource;
 import com.monarchapis.api.v1.client.MeResourceAsync;
 import com.monarchapis.api.v1.client.MessagesResource;
 import com.monarchapis.api.v1.client.MessagesResourceAsync;
+import com.monarchapis.api.v1.client.ModulesResource;
+import com.monarchapis.api.v1.client.ModulesResourceAsync;
 import com.monarchapis.api.v1.client.PermissionsResource;
 import com.monarchapis.api.v1.client.PermissionsResourceAsync;
 import com.monarchapis.api.v1.client.PlansResource;
 import com.monarchapis.api.v1.client.PlansResourceAsync;
-import com.monarchapis.api.v1.client.PoliciesResource;
-import com.monarchapis.api.v1.client.PoliciesResourceAsync;
 import com.monarchapis.api.v1.client.PrincipalClaimsResource;
 import com.monarchapis.api.v1.client.PrincipalClaimsResourceAsync;
 import com.monarchapis.api.v1.client.PrincipalProfilesResource;
@@ -78,14 +76,6 @@ public class ManagementApiImpl implements ManagementApi {
 		return new ApplicationsResourceAsyncImpl(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public AuthenticatorsResource getAuthenticatorsResource() {
-		return new AuthenticatorsResourceImpl(baseUrl, clientFactory, requestProcessors);
-	}
-
-	public AuthenticatorsResourceAsync getAuthenticatorsResourceAsync() {
-		return new AuthenticatorsResourceAsyncImpl(baseUrl, clientFactory, requestProcessors);
-	}
-
 	public ClientsResource getClientsResource() {
 		return new ClientsResourceImpl(baseUrl, clientFactory, requestProcessors);
 	}
@@ -134,6 +124,14 @@ public class ManagementApiImpl implements ManagementApi {
 		return new MessagesResourceAsyncImpl(baseUrl, clientFactory, requestProcessors);
 	}
 
+	public ModulesResource getModulesResource() {
+		return new ModulesResourceImpl(baseUrl, clientFactory, requestProcessors);
+	}
+
+	public ModulesResourceAsync getModulesResourceAsync() {
+		return new ModulesResourceAsyncImpl(baseUrl, clientFactory, requestProcessors);
+	}
+
 	public PermissionsResource getPermissionsResource() {
 		return new PermissionsResourceImpl(baseUrl, clientFactory, requestProcessors);
 	}
@@ -148,14 +146,6 @@ public class ManagementApiImpl implements ManagementApi {
 
 	public PlansResourceAsync getPlansResourceAsync() {
 		return new PlansResourceAsyncImpl(baseUrl, clientFactory, requestProcessors);
-	}
-
-	public PoliciesResource getPoliciesResource() {
-		return new PoliciesResourceImpl(baseUrl, clientFactory, requestProcessors);
-	}
-
-	public PoliciesResourceAsync getPoliciesResourceAsync() {
-		return new PoliciesResourceAsyncImpl(baseUrl, clientFactory, requestProcessors);
 	}
 
 	public PrincipalClaimsResource getPrincipalClaimsResource() {

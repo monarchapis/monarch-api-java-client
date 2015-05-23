@@ -11,15 +11,15 @@ import com.monarchapis.client.rest.Callback;
 
 public interface UsersResourceAsync {
 
-	public Future<UserList> queryUsers(UsersQuery query, Callback<UserList> callback);
+	public Future<UserList> query(UsersQuery query, Callback<UserList> callback);
 
-	public Future<User> createUser(UserUpdate body, Callback<User> callback);
+	public Future<User> create(UserUpdate body, Callback<User> callback);
 
-	public Future<User> loadUser(String id, Callback<User> callback);
+	public Future<User> load(String id, Callback<User> callback);
 
-	public Future<User> updateUser(String id, UserUpdate body, Callback<User> callback);
+	public Future<User> update(String id, UserUpdate body, Callback<User> callback);
 
-	public Future<User> deleteUser(String id, Callback<User> callback);
+	public Future<User> delete(String id, Callback<User> callback);
 
 	public Future<Result> setPassword(String id, SetPassword body, Callback<Result> callback);
 }

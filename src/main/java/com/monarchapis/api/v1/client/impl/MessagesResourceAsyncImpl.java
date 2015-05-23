@@ -31,7 +31,7 @@ public class MessagesResourceAsyncImpl extends AbstractResource implements Messa
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<MessageList> queryMessages(MessagesQuery query, Callback<MessageList> callback) {
+	public Future<MessageList> query(MessagesQuery query, Callback<MessageList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/messages") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -47,7 +47,7 @@ public class MessagesResourceAsyncImpl extends AbstractResource implements Messa
 		return future;
 	}
 
-	public Future<Message> createMessage(MessageUpdate body, Callback<Message> callback) {
+	public Future<Message> create(MessageUpdate body, Callback<Message> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/messages") //
@@ -62,7 +62,7 @@ public class MessagesResourceAsyncImpl extends AbstractResource implements Messa
 		return future;
 	}
 
-	public Future<Message> loadMessage(String id, Callback<Message> callback) {
+	public Future<Message> load(String id, Callback<Message> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/messages/{id}") //
@@ -76,7 +76,7 @@ public class MessagesResourceAsyncImpl extends AbstractResource implements Messa
 		return future;
 	}
 
-	public Future<Message> updateMessage(String id, MessageUpdate body, Callback<Message> callback) {
+	public Future<Message> update(String id, MessageUpdate body, Callback<Message> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -93,7 +93,7 @@ public class MessagesResourceAsyncImpl extends AbstractResource implements Messa
 		return future;
 	}
 
-	public Future<Message> deleteMessage(String id, Callback<Message> callback) {
+	public Future<Message> delete(String id, Callback<Message> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/messages/{id}") //

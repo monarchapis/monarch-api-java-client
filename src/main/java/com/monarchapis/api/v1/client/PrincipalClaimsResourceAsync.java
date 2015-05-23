@@ -9,15 +9,13 @@ import com.monarchapis.client.rest.Callback;
 
 public interface PrincipalClaimsResourceAsync {
 
-	public Future<PrincipalClaimsList> queryPrincipalClaims(PrincipalClaimsQuery query,
-			Callback<PrincipalClaimsList> callback);
+	public Future<PrincipalClaimsList> query(PrincipalClaimsQuery query, Callback<PrincipalClaimsList> callback);
 
-	public Future<PrincipalClaims> createPlan(PrincipalClaimsUpdate body, Callback<PrincipalClaims> callback);
+	public Future<PrincipalClaims> create(PrincipalClaimsUpdate body, Callback<PrincipalClaims> callback);
 
-	public Future<PrincipalClaims> loadPrincipalClaims(String id, Callback<PrincipalClaims> callback);
+	public Future<PrincipalClaims> load(String id, Callback<PrincipalClaims> callback);
 
-	public Future<PrincipalClaims> updatePrincipalClaims(String id, PrincipalClaimsUpdate body,
-			Callback<PrincipalClaims> callback);
+	public Future<PrincipalClaims> update(String id, PrincipalClaimsUpdate body, Callback<PrincipalClaims> callback);
 
-	public Future<PrincipalClaims> deletePrincipalClaims(String id, Callback<PrincipalClaims> callback);
+	public Future<PrincipalClaims> delete(String id, Callback<PrincipalClaims> callback);
 }

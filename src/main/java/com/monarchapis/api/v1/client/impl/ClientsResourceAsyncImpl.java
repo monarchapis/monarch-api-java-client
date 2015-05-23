@@ -31,7 +31,7 @@ public class ClientsResourceAsyncImpl extends AbstractResource implements Client
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<ClientList> queryClients(ClientsQuery query, Callback<ClientList> callback) {
+	public Future<ClientList> query(ClientsQuery query, Callback<ClientList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/clients") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -51,7 +51,7 @@ public class ClientsResourceAsyncImpl extends AbstractResource implements Client
 		return future;
 	}
 
-	public Future<Client> createClient(ClientUpdate body, Callback<Client> callback) {
+	public Future<Client> create(ClientUpdate body, Callback<Client> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/clients") //
@@ -66,7 +66,7 @@ public class ClientsResourceAsyncImpl extends AbstractResource implements Client
 		return future;
 	}
 
-	public Future<Client> loadClient(String id, Callback<Client> callback) {
+	public Future<Client> load(String id, Callback<Client> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/clients/{id}") //
@@ -80,7 +80,7 @@ public class ClientsResourceAsyncImpl extends AbstractResource implements Client
 		return future;
 	}
 
-	public Future<Client> updateClient(String id, ClientUpdate body, Callback<Client> callback) {
+	public Future<Client> update(String id, ClientUpdate body, Callback<Client> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -97,7 +97,7 @@ public class ClientsResourceAsyncImpl extends AbstractResource implements Client
 		return future;
 	}
 
-	public Future<Client> deleteClient(String id, Callback<Client> callback) {
+	public Future<Client> delete(String id, Callback<Client> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/clients/{id}") //

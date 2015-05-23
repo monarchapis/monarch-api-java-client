@@ -6,13 +6,13 @@ import com.monarchapis.api.v1.model.LogEntryUpdate;
 
 public interface LogEntriesResource {
 
-	public LogEntryList queryLogEntries(LogEntriesQuery query);
+	public LogEntryList query(LogEntriesQuery query);
 
-	public LogEntry createLogEntry(LogEntryUpdate body);
+	public LogEntry create(LogEntryUpdate body);
 
-	public LogEntry loadLogEntry(String id);
+	public LogEntry load(String id);
 
-	public LogEntry updateLogEntry(String id, LogEntryUpdate body);
+	public LogEntry update(String id, LogEntryUpdate body);
 
-	public LogEntry deleteLogEntry(String id);
+	public LogEntry delete(String id);
 }

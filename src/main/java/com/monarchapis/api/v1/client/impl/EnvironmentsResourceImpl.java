@@ -29,7 +29,7 @@ public class EnvironmentsResourceImpl extends AbstractResource implements Enviro
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public EnvironmentList queryEnvironments(EnvironmentsQuery query) {
+	public EnvironmentList query(EnvironmentsQuery query) {
 		final RestClient client = newClient("GET", "/environments") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -45,7 +45,7 @@ public class EnvironmentsResourceImpl extends AbstractResource implements Enviro
 		return parseAs(response, EnvironmentList.class);
 	}
 
-	public Environment createEnvironment(EnvironmentUpdate body) {
+	public Environment create(EnvironmentUpdate body) {
 		require(body, "body is a required parameter.");
 
 		final RestClient client = newClient("POST", "/environments") //
@@ -58,7 +58,7 @@ public class EnvironmentsResourceImpl extends AbstractResource implements Enviro
 		return parseAs(response, Environment.class);
 	}
 
-	public Environment loadEnvironment(String id) {
+	public Environment load(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("GET", "/environments/{id}") //
@@ -70,7 +70,7 @@ public class EnvironmentsResourceImpl extends AbstractResource implements Enviro
 		return parseAs(response, Environment.class);
 	}
 
-	public Environment updateEnvironment(String id, EnvironmentUpdate body) {
+	public Environment update(String id, EnvironmentUpdate body) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -85,7 +85,7 @@ public class EnvironmentsResourceImpl extends AbstractResource implements Enviro
 		return parseAs(response, Environment.class);
 	}
 
-	public Environment deleteEnvironment(String id) {
+	public Environment delete(String id) {
 		require(id, "id is a required parameter.");
 
 		final RestClient client = newClient("DELETE", "/environments/{id}") //

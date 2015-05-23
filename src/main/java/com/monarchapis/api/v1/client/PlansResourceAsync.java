@@ -9,13 +9,13 @@ import com.monarchapis.client.rest.Callback;
 
 public interface PlansResourceAsync {
 
-	public Future<PlanList> queryPlans(PlansQuery query, Callback<PlanList> callback);
+	public Future<PlanList> query(PlansQuery query, Callback<PlanList> callback);
 
-	public Future<Plan> createPlan(PlanUpdate body, Callback<Plan> callback);
+	public Future<Plan> create(PlanUpdate body, Callback<Plan> callback);
 
-	public Future<Plan> loadPlan(String id, Callback<Plan> callback);
+	public Future<Plan> load(String id, Callback<Plan> callback);
 
-	public Future<Plan> updatePlan(String id, PlanUpdate body, Callback<Plan> callback);
+	public Future<Plan> update(String id, PlanUpdate body, Callback<Plan> callback);
 
-	public Future<Plan> deletePlan(String id, Callback<Plan> callback);
+	public Future<Plan> delete(String id, Callback<Plan> callback);
 }

@@ -6,9 +6,9 @@ import com.monarchapis.api.v1.model.ObjectData;
 
 public interface EventsResource {
 
-	public EventDescriptor getEventDescriptor(String eventType);
+	public EventDescriptor getDescriptor(String eventType);
 
 	public void collectEvent(String eventType, ObjectData body);
 
-	public EventsResponse queryEvents(String eventType, String start, String end, String query);
+	public EventsResponse query(String eventType, String start, String end, String query);
 }

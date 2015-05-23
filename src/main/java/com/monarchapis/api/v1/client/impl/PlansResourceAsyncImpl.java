@@ -31,7 +31,7 @@ public class PlansResourceAsyncImpl extends AbstractResource implements PlansRes
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<PlanList> queryPlans(PlansQuery query, Callback<PlanList> callback) {
+	public Future<PlanList> query(PlansQuery query, Callback<PlanList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/plans") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -48,7 +48,7 @@ public class PlansResourceAsyncImpl extends AbstractResource implements PlansRes
 		return future;
 	}
 
-	public Future<Plan> createPlan(PlanUpdate body, Callback<Plan> callback) {
+	public Future<Plan> create(PlanUpdate body, Callback<Plan> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/plans") //
@@ -63,7 +63,7 @@ public class PlansResourceAsyncImpl extends AbstractResource implements PlansRes
 		return future;
 	}
 
-	public Future<Plan> loadPlan(String id, Callback<Plan> callback) {
+	public Future<Plan> load(String id, Callback<Plan> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/plans/{id}") //
@@ -77,7 +77,7 @@ public class PlansResourceAsyncImpl extends AbstractResource implements PlansRes
 		return future;
 	}
 
-	public Future<Plan> updatePlan(String id, PlanUpdate body, Callback<Plan> callback) {
+	public Future<Plan> update(String id, PlanUpdate body, Callback<Plan> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -94,7 +94,7 @@ public class PlansResourceAsyncImpl extends AbstractResource implements PlansRes
 		return future;
 	}
 
-	public Future<Plan> deletePlan(String id, Callback<Plan> callback) {
+	public Future<Plan> delete(String id, Callback<Plan> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/plans/{id}") //

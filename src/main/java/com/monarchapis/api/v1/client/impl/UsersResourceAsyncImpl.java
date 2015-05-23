@@ -33,7 +33,7 @@ public class UsersResourceAsyncImpl extends AbstractResource implements UsersRes
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<UserList> queryUsers(UsersQuery query, Callback<UserList> callback) {
+	public Future<UserList> query(UsersQuery query, Callback<UserList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/users") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -52,7 +52,7 @@ public class UsersResourceAsyncImpl extends AbstractResource implements UsersRes
 		return future;
 	}
 
-	public Future<User> createUser(UserUpdate body, Callback<User> callback) {
+	public Future<User> create(UserUpdate body, Callback<User> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/users") //
@@ -67,7 +67,7 @@ public class UsersResourceAsyncImpl extends AbstractResource implements UsersRes
 		return future;
 	}
 
-	public Future<User> loadUser(String id, Callback<User> callback) {
+	public Future<User> load(String id, Callback<User> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/users/{id}") //
@@ -81,7 +81,7 @@ public class UsersResourceAsyncImpl extends AbstractResource implements UsersRes
 		return future;
 	}
 
-	public Future<User> updateUser(String id, UserUpdate body, Callback<User> callback) {
+	public Future<User> update(String id, UserUpdate body, Callback<User> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -98,7 +98,7 @@ public class UsersResourceAsyncImpl extends AbstractResource implements UsersRes
 		return future;
 	}
 
-	public Future<User> deleteUser(String id, Callback<User> callback) {
+	public Future<User> delete(String id, Callback<User> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/users/{id}") //

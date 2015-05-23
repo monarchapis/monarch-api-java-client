@@ -6,13 +6,13 @@ import com.monarchapis.api.v1.model.ClientUpdate;
 
 public interface ClientsResource {
 
-	public ClientList queryClients(ClientsQuery query);
+	public ClientList query(ClientsQuery query);
 
-	public Client createClient(ClientUpdate body);
+	public Client create(ClientUpdate body);
 
-	public Client loadClient(String id);
+	public Client load(String id);
 
-	public Client updateClient(String id, ClientUpdate body);
+	public Client update(String id, ClientUpdate body);
 
-	public Client deleteClient(String id);
+	public Client delete(String id);
 }

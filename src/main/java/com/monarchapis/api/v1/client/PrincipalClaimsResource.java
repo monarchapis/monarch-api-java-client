@@ -6,13 +6,13 @@ import com.monarchapis.api.v1.model.PrincipalClaimsUpdate;
 
 public interface PrincipalClaimsResource {
 
-	public PrincipalClaimsList queryPrincipalClaims(PrincipalClaimsQuery query);
+	public PrincipalClaimsList query(PrincipalClaimsQuery query);
 
-	public PrincipalClaims createPlan(PrincipalClaimsUpdate body);
+	public PrincipalClaims create(PrincipalClaimsUpdate body);
 
-	public PrincipalClaims loadPrincipalClaims(String id);
+	public PrincipalClaims load(String id);
 
-	public PrincipalClaims updatePrincipalClaims(String id, PrincipalClaimsUpdate body);
+	public PrincipalClaims update(String id, PrincipalClaimsUpdate body);
 
-	public PrincipalClaims deletePrincipalClaims(String id);
+	public PrincipalClaims delete(String id);
 }

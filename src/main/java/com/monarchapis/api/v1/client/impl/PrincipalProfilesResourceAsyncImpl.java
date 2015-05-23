@@ -31,8 +31,7 @@ public class PrincipalProfilesResourceAsyncImpl extends AbstractResource impleme
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<PrincipalProfileList> queryPrincipalProfile(PrincipalProfilesQuery query,
-			Callback<PrincipalProfileList> callback) {
+	public Future<PrincipalProfileList> query(PrincipalProfilesQuery query, Callback<PrincipalProfileList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/principalProfiles") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -47,7 +46,7 @@ public class PrincipalProfilesResourceAsyncImpl extends AbstractResource impleme
 		return future;
 	}
 
-	public Future<PrincipalProfile> createPlan(PrincipalProfileUpdate body, Callback<PrincipalProfile> callback) {
+	public Future<PrincipalProfile> create(PrincipalProfileUpdate body, Callback<PrincipalProfile> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/principalProfiles") //
@@ -62,7 +61,7 @@ public class PrincipalProfilesResourceAsyncImpl extends AbstractResource impleme
 		return future;
 	}
 
-	public Future<PrincipalProfile> loadPrincipalProfile(String id, Callback<PrincipalProfile> callback) {
+	public Future<PrincipalProfile> load(String id, Callback<PrincipalProfile> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/principalProfiles/{id}") //
@@ -76,8 +75,7 @@ public class PrincipalProfilesResourceAsyncImpl extends AbstractResource impleme
 		return future;
 	}
 
-	public Future<PrincipalProfile> updatePrincipalProfile(String id, PrincipalProfileUpdate body,
-			Callback<PrincipalProfile> callback) {
+	public Future<PrincipalProfile> update(String id, PrincipalProfileUpdate body, Callback<PrincipalProfile> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -94,7 +92,7 @@ public class PrincipalProfilesResourceAsyncImpl extends AbstractResource impleme
 		return future;
 	}
 
-	public Future<PrincipalProfile> deletePrincipalProfile(String id, Callback<PrincipalProfile> callback) {
+	public Future<PrincipalProfile> delete(String id, Callback<PrincipalProfile> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/principalProfiles/{id}") //

@@ -5,13 +5,13 @@ import com.monarchapis.api.v1.model.TokenList;
 
 public interface TokensResource {
 
-	public TokenList queryTokens(TokensQuery query);
+	public TokenList query(TokensQuery query);
 
-	public Token createToken(Token body);
+	public Token create(Token body);
 
-	public Token loadToken(String id);
+	public Token load(String id);
 
-	public Token updateToken(String id, Token body);
+	public Token update(String id, Token body);
 
-	public Token deleteToken(String id);
+	public Token delete(String id);
 }

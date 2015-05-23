@@ -31,7 +31,7 @@ public class ServicesResourceAsyncImpl extends AbstractResource implements Servi
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<ServiceList> queryServices(ServicesQuery query, Callback<ServiceList> callback) {
+	public Future<ServiceList> query(ServicesQuery query, Callback<ServiceList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/services") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -53,7 +53,7 @@ public class ServicesResourceAsyncImpl extends AbstractResource implements Servi
 		return future;
 	}
 
-	public Future<Service> createService(ServiceUpdate body, Callback<Service> callback) {
+	public Future<Service> create(ServiceUpdate body, Callback<Service> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/services") //
@@ -68,7 +68,7 @@ public class ServicesResourceAsyncImpl extends AbstractResource implements Servi
 		return future;
 	}
 
-	public Future<Service> loadService(String id, Callback<Service> callback) {
+	public Future<Service> load(String id, Callback<Service> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/services/{id}") //
@@ -82,7 +82,7 @@ public class ServicesResourceAsyncImpl extends AbstractResource implements Servi
 		return future;
 	}
 
-	public Future<Service> updateService(String id, ServiceUpdate body, Callback<Service> callback) {
+	public Future<Service> update(String id, ServiceUpdate body, Callback<Service> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -99,7 +99,7 @@ public class ServicesResourceAsyncImpl extends AbstractResource implements Servi
 		return future;
 	}
 
-	public Future<Service> deleteService(String id, Callback<Service> callback) {
+	public Future<Service> delete(String id, Callback<Service> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/services/{id}") //

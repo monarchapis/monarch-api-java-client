@@ -10,15 +10,15 @@ import com.monarchapis.client.rest.Callback;
 
 public interface EnvironmentsResourceAsync {
 
-	public Future<EnvironmentList> queryEnvironments(EnvironmentsQuery query, Callback<EnvironmentList> callback);
+	public Future<EnvironmentList> query(EnvironmentsQuery query, Callback<EnvironmentList> callback);
 
-	public Future<Environment> createEnvironment(EnvironmentUpdate body, Callback<Environment> callback);
+	public Future<Environment> create(EnvironmentUpdate body, Callback<Environment> callback);
 
-	public Future<Environment> loadEnvironment(String id, Callback<Environment> callback);
+	public Future<Environment> load(String id, Callback<Environment> callback);
 
-	public Future<Environment> updateEnvironment(String id, EnvironmentUpdate body, Callback<Environment> callback);
+	public Future<Environment> update(String id, EnvironmentUpdate body, Callback<Environment> callback);
 
-	public Future<Environment> deleteEnvironment(String id, Callback<Environment> callback);
+	public Future<Environment> delete(String id, Callback<Environment> callback);
 
 	public Future<EnvironmentSummary> getSummary(Callback<EnvironmentSummary> callback);
 }

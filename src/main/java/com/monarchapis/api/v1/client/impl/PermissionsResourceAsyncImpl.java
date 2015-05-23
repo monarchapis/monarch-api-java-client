@@ -31,7 +31,7 @@ public class PermissionsResourceAsyncImpl extends AbstractResource implements Pe
 		super(baseUrl, clientFactory, requestProcessors);
 	}
 
-	public Future<PermissionList> queryPermissions(PermissionsQuery query, Callback<PermissionList> callback) {
+	public Future<PermissionList> query(PermissionsQuery query, Callback<PermissionList> callback) {
 		final RestAsyncClient client = newAsyncClient("GET", "/permissions") //
 				.accepts("application/json") //
 				.addQuery("offset", query.getOffset()) //
@@ -51,7 +51,7 @@ public class PermissionsResourceAsyncImpl extends AbstractResource implements Pe
 		return future;
 	}
 
-	public Future<Permission> createPermission(PermissionUpdate body, Callback<Permission> callback) {
+	public Future<Permission> create(PermissionUpdate body, Callback<Permission> callback) {
 		require(body, "body is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("POST", "/permissions") //
@@ -66,7 +66,7 @@ public class PermissionsResourceAsyncImpl extends AbstractResource implements Pe
 		return future;
 	}
 
-	public Future<Permission> loadPermission(String id, Callback<Permission> callback) {
+	public Future<Permission> load(String id, Callback<Permission> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("GET", "/permissions/{id}") //
@@ -80,7 +80,7 @@ public class PermissionsResourceAsyncImpl extends AbstractResource implements Pe
 		return future;
 	}
 
-	public Future<Permission> updatePermission(String id, PermissionUpdate body, Callback<Permission> callback) {
+	public Future<Permission> update(String id, PermissionUpdate body, Callback<Permission> callback) {
 		require(id, "id is a required parameter.");
 		require(body, "body is a required parameter.");
 
@@ -97,7 +97,7 @@ public class PermissionsResourceAsyncImpl extends AbstractResource implements Pe
 		return future;
 	}
 
-	public Future<Permission> deletePermission(String id, Callback<Permission> callback) {
+	public Future<Permission> delete(String id, Callback<Permission> callback) {
 		require(id, "id is a required parameter.");
 
 		final RestAsyncClient client = newAsyncClient("DELETE", "/permissions/{id}") //
